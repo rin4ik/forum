@@ -1,0 +1,32 @@
+{
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es6": true,
+        "node": true
+    },
+    "extends": [
+        // add more generic rulesets here, such as:
+        "eslint:recommended",
+        "plugin:vue/recommended"
+      ],
+    "parserOptions": {
+        "ecmaFeatures": {
+        "jsx": false
+        },  
+        "sourceType": "module"
+    },
+    "rules": {
+        "no-const-assign": "warn",
+        "no-this-before-super": "warn",
+        "no-undef": "warn",
+        "no-unreachable": "warn",
+        "no-unused-vars": "warn",
+        "constructor-super": "warn",
+        "valid-typeof": "warn",
+        "eqeqeq":"warn",
+        "vue/valid-v-if": "error",
+        "no-console": 0
+    }
+    
+}
