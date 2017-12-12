@@ -14,10 +14,11 @@
     </div>
 </template>
 
-<script>
-    export default {
+<script>   
+export default {
         mounted() {
             console.log('Component mounted.')
         }
     }
+
 </script>

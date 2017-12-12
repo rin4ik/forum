@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Filters;
 
 use Illuminate\Http\Request;
@@ -8,7 +9,9 @@ abstract class Filters
     /**
      * @var Request
      */
+
     protected $request;
+
     /**
      * The Eloquent builder.
      *
@@ -21,6 +24,7 @@ abstract class Filters
      * @var array
      */
     protected $filters = [];
+
     /**
      * Create a new ThreadFilters instance.
      *
@@ -30,6 +34,7 @@ abstract class Filters
     {
         $this->request = $request;
     }
+
     /**
      * Apply the filters.
      *
@@ -46,6 +51,7 @@ abstract class Filters
         }
         return $this->builder;
     }
+
     /**
      * Fetch all relevant filters from the request.
      *
