@@ -13,7 +13,9 @@
   {{$date}}
 </h3>
 @foreach($activity as $activ)
-@include("profiles.activities.{$activ->type}")
+@if(view()->exists("profiles.activities.{$activ->type}"))
+    @include("profiles.activities.{$activ->type}")
+@endif
 @endforeach
 @endforeach  
 {{-- {{$activity->links()}}    --}}   

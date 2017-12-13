@@ -1,6 +1,7 @@
 @component('profiles.activities.activity')
 @slot('heading')
-  
+<i class="fa fa-bullhorn" aria-hidden="true" style="
+    margin-right:2px;">  </i>
                            {{$profileUser->name}} published <a href="{{$activ->subject->path()}}">
                              {{$activ->subject->title}}
                            </a>   

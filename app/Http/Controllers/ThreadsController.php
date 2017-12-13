@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Reply;
@@ -16,6 +17,7 @@ class ThreadsController extends Controller
     {
         $this->middleware('auth')->except(['index', 'show']);
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -26,12 +28,13 @@ class ThreadsController extends Controller
     public function index(Channel $channel, ThreadFilters $filters)
     {
         $threads = $this->getThreads($channel, $filters);
-       
+
         if (request()->wantsJson()) {
             return $threads;
         }
         return view('threads.index', compact('threads'));
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -41,6 +44,7 @@ class ThreadsController extends Controller
     {
         return view('threads.create');
     }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -60,8 +64,10 @@ class ThreadsController extends Controller
             'title' => request('title'),
             'body' => request('body')
         ]);
-        return redirect($thread->path());
+        return redirect($thread->path())
+        ->with('flash', 'Your thread has been published!');
     }
+
     /**
      * Display the specified resource.
      *
@@ -76,10 +82,11 @@ class ThreadsController extends Controller
             'replies' => $thread->replies()->paginate(20)
         ]);
     }
+
     public function destroy($channel, Thread $thread)
     {
         $this->authorize('update', $thread);
-    
+
         $thread->delete();
         // $thread->replies()->delete();
         //Reply::where('thread_id', $thread->id)->delete();
@@ -87,11 +94,10 @@ class ThreadsController extends Controller
             return response([], 204);
         }
 
-       
-       
-        
-        return redirect('/threads');
+        return redirect('/threads')
+        ->with('flash', "You've deleted thread");
     }
+
     /**
      * Fetch all relevant threads.
      *

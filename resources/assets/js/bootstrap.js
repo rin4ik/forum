@@ -1,6 +1,7 @@
+import Vue from 'vue'
 
 window._ = require('lodash');
-
+window.Vue = require('vue');
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
  * for JavaScript based Bootstrap features such as modals and tabs. This
@@ -42,7 +43,11 @@ if (token) {
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
- * allows your team to easily build robust real-time web applications.
+ * allows your team to easily build robust real
+window.event = new Vue();
+window.flash = function (message){
+    window.events.$emit('flash', message);
+}-time web applications.
  */
 
 // import Echo from 'laravel-echo'
@@ -53,3 +58,7 @@ if (token) {
 //     broadcaster: 'pusher',
 //     key: 'your-pusher-key'
 // });
+window.events = new Vue();
+window.flash = function (message){
+        window.events.$emit('flash', message);
+}

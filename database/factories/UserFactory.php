@@ -57,3 +57,16 @@ $factory->define(App\Reply::class, function ($faker) {
         'body' => $faker->paragraph
     ];
 });
+$factory->define(App\Favorite::class, function ($faker) {
+    return [
+     
+
+        'user_id' => function () {
+            return factory('App\User')->create()->id;
+        },
+           'favorited_id' => function () {
+            return factory('App\Reply')->create()->id;
+        },
+        'favorited_type' => 'App\Reply'
+    ];
+});

@@ -18,6 +18,13 @@
         background-color: #F8F6F2;
         padding-bottom: 100px;
     }
+    .fa-heart-o::before {
+    content: "\f087";
+}
+    #heart{
+    text-shadow: 1px 1px 1px #f0d1d1;
+    font-size: 1.1em;
+    }
     .level{
 
         display: flex;align-items: center;
@@ -32,9 +39,11 @@
     <div id="app">
         @include('layouts.nav')
         @yield('content')
+        <flash message="{{session('flash')}}"></flash>
     </div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    
 </body>
 </html>

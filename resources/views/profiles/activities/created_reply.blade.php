@@ -1,7 +1,11 @@
  @component('profiles.activities.activity')
 @slot('heading')
-  
-  {{$profileUser->name}} replied to <a href="{{$activ->subject->thread->path()}}">{{$activ->subject->thread->title}}</a>
+<i class="fa fa-reply" aria-hidden="true"
+
+    style="margin-right:2px;">        </i>
+
+
+{{$profileUser->name}} replied to <a href="{{$activ->subject->thread->path()}}" >{{$activ->subject->thread->title}}</a>
              
 @endslot
 @slot('date')

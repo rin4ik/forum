@@ -58,4 +58,23 @@ class ActivityTest extends TestCase
         $this->assertEquals($activity->subject->id, $reply->id);
         $this->assertEquals(2, Activity::count());
     }
+
+ /**
+    * @test
+    */
+    public function it_records_activity_when_a_reply_is_favorited()
+    {
+        $this->signIn();
+        $favorite=create('App\Favorite');
+        $this->assertDatabaseHas('activities', [
+        'type' => 'created_favorite',
+        'user_id' => auth()->id(),
+        'subject_id' => $favorite->id,
+        'subject_type' => 'App\Favorite'
+]);
+        $activity = Activity::first();
+        $this->assertEquals($activity->subject->id, $favorite->id);
+        $this->assertEquals(3, Activity::count());
+    }
+
 }
