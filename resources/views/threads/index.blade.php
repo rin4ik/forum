@@ -25,7 +25,7 @@ font-size: 17px;">
                     <div class="body">{{ $thread->body }}</div>
                     <div class="level" style="padding: 0; background-color: white; float:right; padding-top:10px">
                         created by
-                        <a href="profiles/{{$thread->creator->name}}" style="margin-left:3px;margin-right:3px ">
+                        <a href="/profiles/{{$thread->creator->name}}" style="margin-left:3px;margin-right:3px ">
                         {{ $thread->creator->name}}</a>
                         {{$thread->created_at->diffForHumans()}}
                     </div>
