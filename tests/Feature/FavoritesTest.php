@@ -31,7 +31,7 @@ public function an_authenticated_user_can_favotite_any_reply()
     /**
      * @test
      */
-    public function an_authenticated_user_can_favotite_a_reply_once()
+    public function an_authenticated_user_can_favorite_a_reply_once()
     {
         $this->signIn();
         $reply=create('App\Reply');
@@ -41,5 +41,18 @@ public function an_authenticated_user_can_favotite_any_reply()
             $this->fail('heyyy shhhhhh');
         }
         $this->assertCount(1,$reply->favorites);
-    }    
+    }   
+
+    /**
+     * @test
+     * */ 
+    public function an_authenticated_user_can_unfavorite_a_reply()
+    {
+        $this->signIn();
+        $reply=create('App\Reply');
+        $this->post('replies/'.$reply->id.'/favorites');
+        $this->delete('replies/'.$reply->id.'/favorites');
+        $this->assertCount(0,$reply->favorites);
+    }
+
 }
