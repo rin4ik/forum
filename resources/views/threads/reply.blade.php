@@ -37,8 +37,11 @@
                         <button class="btn btn-link" @click="editing = true">
                                 <i class="fa fa-pencil-square-o" style="color:rgb(37, 87, 188)" aria-hidden="true"></i> Edit</button>
                         @endcan
+                        @auth
                         <favorite :reply="{{$reply}}"></favorite>
 
+    
+@endauth
                 </div>
 
         </div>
