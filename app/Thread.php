@@ -18,7 +18,6 @@ class Thread extends Model
         });
         static::deleting(function ($thread) {
             $thread->replies->each->delete();
-           
         });
     }
 

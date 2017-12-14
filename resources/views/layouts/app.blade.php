@@ -18,6 +18,9 @@
         background-color: #F8F6F2;
         padding-bottom: 100px;
     }
+    [v-cloak]{
+        display: none;
+    },
     .fa-heart-o::before {
     content: "\f087";
 }

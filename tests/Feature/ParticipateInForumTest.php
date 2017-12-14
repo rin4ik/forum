@@ -38,46 +38,51 @@ class ParticipateInForumTest extends TestCase
     /**
      * @test
      */
-        function unauthorized_users_cannot_delete_replies(){
-            $this->withExceptionHandling();
-            $reply=create('App\Reply');
-            $this->delete("replies/{$reply->id}")
+    public function unauthorized_users_cannot_delete_replies()
+    {
+        $this->withExceptionHandling();
+        $reply = create('App\Reply');
+        $this->delete("replies/{$reply->id}")
             ->assertRedirect('login');
-            $this->signIn();
-            $this->delete("/replies/{$reply->id}")
+        $this->signIn();
+        $this->delete("/replies/{$reply->id}")
             ->assertStatus(403);
-        }
+    }
+
     /**
      * @test
      */
-    function authorized_users_can_delete_replies(){
+    public function authorized_users_can_delete_replies()
+    {
         $this->signIn();
-        $reply=create('App\Reply',['user_id' => auth()->id()]);
-       
+        $reply = create('App\Reply', ['user_id' => auth()->id()]);
+
         $this->delete("/replies/{$reply->id}")->assertStatus(302);
 
         $this->assertDatabaseMissing('replies', ['id' => $reply->id]);
-    }     
-      /**
+    }
+
+    /**
      * @test
      */
     public function authorized_users_can_update_threads()
     {
         $this->signIn();
-        $reply=create('App\Reply',['user_id' => auth()->id()]);
-        $this->patch("/replies/{$reply->id}",['body' => 'You have been changed, fool']);
-        $this->assertDatabaseHas('replies', ['id'=>$reply->id, 'body'=>'You have been changed, fool']);
+        $reply = create('App\Reply', ['user_id' => auth()->id()]);
+        $this->patch("/replies/{$reply->id}", ['body' => 'You have been changed, fool']);
+        $this->assertDatabaseHas('replies', ['id' => $reply->id, 'body' => 'You have been changed, fool']);
     }
-     /**
-     * @test
-     */
-    function unauthorized_users_cannot_update_replies(){
+
+    /**
+    * @test
+    */
+    public function unauthorized_users_cannot_update_replies()
+    {
         $this->withExceptionHandling();
-        $reply=create('App\Reply');
-        $this->patch("/replies/{$reply->id}",['body' => 'You have been changed, fool'])
+        $reply = create('App\Reply');
+        $this->patch("/replies/{$reply->id}", ['body' => 'You have been changed, fool'])
         ->assertRedirect('/login');
         $this->signIn();
         $this->patch("/replies/{$reply->id}")->assertStatus(403);
     }
-    }       
-    
+}

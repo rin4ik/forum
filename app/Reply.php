@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Favorite;
 
 class Reply extends Model
 {
@@ -16,7 +15,6 @@ class Reply extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-
 
     public function thread()
     {

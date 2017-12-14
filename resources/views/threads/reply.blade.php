@@ -1,4 +1,4 @@
-<reply :attributes="{{$reply}}" inline-template>
+<reply :attributes="{{$reply}}" inline-template v-cloak>
      <div id="reply-{{$reply->id}}" class="panel panel-default">
                 
       <div class="panel-heading" style="padding-top: 0px;
@@ -17,21 +17,20 @@
             </form>
       
       
-
+@can('update', $reply)
 <button type="submit" class="btn btn-link"  @click="editing=true" style="font-weight: 700; width:30px; margin-top:3px ; height:20px;"><i class="fa fa-pencil-square-o" style="color:rgb(37, 87, 188)" aria-hidden="true" ></i>
 </button>
+@endcan
 </div>
 
 @can('update', $reply)
-                <form action="\replies\{{$reply->id}}" method="POST">
-                {{csrf_field()}}
-                {{method_field('DELETE')}}
-                 <button type="submit" class="btn btn-link" style="font-weight: 700; width:30px;margin-top: -45px;
-                 margin-right: -17.5px; height:20px;"><i class="fa fa-window-close"style="color:rgba(24, 24, 26, 0.77)" aria-hidden="true"></i>
+<button type="submit" class="btn btn-link" style="font-weight: 700; width:30px;margin-top: -45px;
+                 margin-right: -17.5px; height:20px;" @click="destroy"><i class="fa fa-window-close"style="color:rgba(24, 24, 26, 0.77)" aria-hidden="true"></i>
 
-        </button>
-</form>  @endcan
-        </div>
+</button>
+
+ @endcan
+         </div>
            </div>
            <div class="panel-body">
               <div v-if="editing">
