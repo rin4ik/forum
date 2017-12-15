@@ -1,5 +1,5 @@
 <template>
- <button type="submit" @click='toggle' class="btn btn-link" style="padding-left:640px; text-decoration:none;">
+ <button type="submit" @click='toggle' class="btn btn-link " style="padding-left:0px; text-decoration:none;">
       <span v-text="count"> </span> <i :class="classes" aria-hidden="true" ></i></button>
 </template>
 
