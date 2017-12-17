@@ -12353,6 +12353,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 window._ = __webpack_require__(18);
 window.Vue = __webpack_require__(2);
+window.Vue.prototype.authorize = function (handler) {
+    var user = window.App.user;
+    return user ? handler(user) : false;
+};
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
  * for JavaScript based Bootstrap features such as modals and tabs. This
@@ -12360,11 +12364,11 @@ window.Vue = __webpack_require__(2);
  */
 
 try {
-  window.$ = window.jQuery = __webpack_require__(20);
+    window.$ = window.jQuery = __webpack_require__(20);
 
-  __webpack_require__(21);
+    __webpack_require__(21);
 } catch (e) {
-  "sadasdas";
+    "sadasdas";
 }
 
 /**
@@ -12386,9 +12390,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 var token = document.head.querySelector('meta[name="csrf-token"]');
 
 if (token) {
-  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
 } else {
-  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
 
 /**
@@ -12411,7 +12415,7 @@ window.flash = function (message){
 // });
 window.events = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a();
 window.flash = function (message) {
-  window.events.$emit('flash', message);
+    window.events.$emit('flash', message);
 };
 
 /***/ }),
@@ -43425,7 +43429,7 @@ exports = module.exports = __webpack_require__(3)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -43456,7 +43460,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             items: this.data
         };
+    },
+
+    methods: {
+        remove: function remove(index) {
+            this.items.splice(index, 1);
+            this.$emit('removed');
+            flash('Reply has been deleted');
+        }
     }
+
 });
 
 /***/ }),
@@ -43546,7 +43559,7 @@ exports = module.exports = __webpack_require__(3)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -43608,10 +43621,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['data'],
+    components: { Favorite: __WEBPACK_IMPORTED_MODULE_0__Favorite_vue___default.a },
     data: function data() {
         return {
             editing: false,
@@ -43620,6 +43636,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
 
+    computed: {
+        signedIn: function signedIn() {
+            return window.App.signedIn;
+        },
+        canUpdate: function canUpdate() {
+            var _this = this;
+
+            return this.authorize(function (user) {
+                return _this.data.user_id == user.id;
+            });
+            //  return this.data.user_id == window.App.user.id;
+        }
+    },
     methods: {
         update: function update() {
             axios.patch('/replies/' + this.data.id, {
@@ -43630,9 +43659,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         destroy: function destroy() {
             axios.delete('/replies/' + this.data.id);
-            $(this.$el).fadeOut(300, function () {
-                flash('Your reply has been Deleted!');
-            });
+            this.$emit('deleted', this.data.id);
         }
     }
 });
@@ -43843,7 +43870,34 @@ var render = function() {
                   _vm._s(_vm.data.created_at) +
                   "...\n                                "
               )
-            ])
+            ]),
+            _vm._v(" "),
+            _vm.canUpdate
+              ? _c("div", [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-link",
+                      staticStyle: {
+                        "font-weight": "700",
+                        width: "30px",
+                        "margin-top": "-45px",
+                        "margin-right": "-17.5px",
+                        height: "20px"
+                      },
+                      attrs: { type: "submit" },
+                      on: { click: _vm.destroy }
+                    },
+                    [
+                      _c("i", {
+                        staticClass: "fa fa-window-close",
+                        staticStyle: { color: "rgba(24, 24, 26, 0.77)" },
+                        attrs: { "aria-hidden": "true" }
+                      })
+                    ]
+                  )
+                ])
+              : _vm._e()
           ])
         ]
       ),
@@ -43897,7 +43951,42 @@ var render = function() {
               )
             ])
           : _c("div", { domProps: { textContent: _vm._s(_vm.body) } })
-      ])
+      ]),
+      _vm._v(" "),
+      _vm.canUpdate
+        ? _c(
+            "div",
+            {
+              staticClass: "panel-footer level",
+              staticStyle: { padding: "0", "background-color": "white" }
+            },
+            [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-link ",
+                  on: {
+                    click: function($event) {
+                      _vm.editing = true
+                    }
+                  }
+                },
+                [
+                  _c("i", {
+                    staticClass: "fa fa-pencil-square-o",
+                    staticStyle: { color: "rgb(37, 87, 188)" },
+                    attrs: { "aria-hidden": "true" }
+                  }),
+                  _vm._v(" Edit")
+                ]
+              ),
+              _vm._v(" "),
+              _vm.signedIn
+                ? _c("div", [_c("favorite", { attrs: { reply: _vm.data } })], 1)
+                : _vm._e()
+            ]
+          )
+        : _vm._e()
     ]
   )
 }
@@ -43921,8 +44010,21 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    _vm._l(_vm.items, function(reply) {
-      return _c("div", [_c("reply", { attrs: { data: reply } })], 1)
+    _vm._l(_vm.items, function(reply, index) {
+      return _c(
+        "div",
+        [
+          _c("reply", {
+            attrs: { data: reply },
+            on: {
+              deleted: function($event) {
+                _vm.remove(index)
+              }
+            }
+          })
+        ],
+        1
+      )
     })
   )
 }
