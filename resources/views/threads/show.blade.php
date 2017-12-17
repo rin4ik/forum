@@ -1,4 +1,5 @@
 @extends('layouts.app') @section('content')
+<thread-view inline-template>
 <div class="container" ii>
     <div class="row">
         <div class="col-md-8">
@@ -29,8 +30,8 @@ font-size: 20px;"> {{$thread->title}}</span>
 
                 </div>
             </div>
-
-            @foreach($replies as $reply) @include('threads.reply') @endforeach {{$replies->links()}} @auth
+            <replies :data="{{$thread->replies}}"></replies>
+            {{-- @foreach($replies as $reply) @include('threads.reply') @endforeach {{$replies->links()}} --}} @auth
 
             <form method="POST" action="{{$thread->path().'/replies'}}">
                 {{csrf_field()}}
@@ -63,4 +64,5 @@ font-size: 20px;"> {{$thread->title}}</span>
         </div>
     </div>
 </div>
+</thread-view>
 @endsection

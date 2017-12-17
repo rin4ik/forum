@@ -11,9 +11,7 @@
         {{$date}}
       </h3>
       @foreach($activity as $activ) @if(view()->exists("profiles.activities.{$activ->type}")) @include("profiles.activities.{$activ->type}")
-      @endif
-      @endforeach
-      @empty
+      @endif @endforeach @empty
       <h4>There is no activity for this user yet!</h4>
       @endforelse {{-- {{$activity->links()}} --}}
     </div>
