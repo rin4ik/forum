@@ -30,24 +30,8 @@ font-size: 20px;"> {{$thread->title}}</span>
 
                 </div>
             </div>
-            <replies :data="{{$thread->replies}}" @removed="repliesCount--"></replies>
-            {{-- {{$replies->links()}} --}} @auth
-
-            <form method="POST" action="{{$thread->path().'/replies'}}">
-                {{csrf_field()}}
-                <div class="form-group">
-                    <textarea name="body" id="body" class="form-control" placeholder="Have something to say?" rows="5"></textarea>
-                    <div class="form-group{{ $errors->has('body') ? ' has-error' : '' }}">
-                        <p class="text-danger">{{ $errors->first('body','Oh my gosh please type something , buddy!') }}</p>
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-default">Post</button>
-            </form>
-
-            @endauth @guest
-            <p class="text-center">Please
-                <a href="{{route('login')}}">sign in</a> to participate in this discussion</p>
-            @endguest
+            <replies :data="{{$thread->replies}}" @added="repliesCount++" @removed="repliesCount--"></replies>
+            {{-- {{$replies->links()}} --}}
         </div>
         <div class="col-md-4">
             <div class="panel panel-default">

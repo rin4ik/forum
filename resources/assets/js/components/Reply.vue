@@ -33,18 +33,18 @@
                         </div>
                 </div>
 
- 
-                <div class="panel-footer level" v-if="canUpdate" style="padding: 0; background-color: white;">
+ <div style="position:inline">
+                <div class="panel-footer level" v-if="canUpdate" style="padding: 0; background-color: white; float:left">
                         
                         <button class="btn btn-link " @click="editing = true">
                                 <i class="fa fa-pencil-square-o" style="color:rgb(37, 87, 188)" aria-hidden="true"></i> Edit</button>
                       
-                         <div v-if="signedIn">
-                        <favorite :reply="data"></favorite> 
-</div>
+                  
+</div>       <div v-if="signedIn">
+                        <favorite :reply="data" style="padding-left:10px;"></favorite> 
 
                 </div> 
-
+</div>
         </div>
 
 </template>

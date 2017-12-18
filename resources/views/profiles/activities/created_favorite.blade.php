@@ -3,7 +3,7 @@
 <i id="heart" class="fa fa-thumbs-up" aria-hidden="true"></i>
 
   <a href="{{$activ->subject->favorited->path()}}" style="
-    margin-left:2px;">
+     margin-left:2px;">
  {{$profileUser->name}} favorited a reply.  
     </a>
           

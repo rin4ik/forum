@@ -43429,7 +43429,7 @@ exports = module.exports = __webpack_require__(3)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -43442,6 +43442,8 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Reply_vue__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Reply_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Reply_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__NewReply_vue__ = __webpack_require__(73);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__NewReply_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__NewReply_vue__);
 //
 //
 //
@@ -43451,14 +43453,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['data'],
-    components: { Reply: __WEBPACK_IMPORTED_MODULE_0__Reply_vue___default.a },
+    components: { Reply: __WEBPACK_IMPORTED_MODULE_0__Reply_vue___default.a, NewReply: __WEBPACK_IMPORTED_MODULE_1__NewReply_vue___default.a },
     data: function data() {
         return {
-            items: this.data
+            items: this.data,
+            endpoint: location.pathname + '/replies'
         };
     },
 
@@ -43467,6 +43473,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.items.splice(index, 1);
             this.$emit('removed');
             flash('Reply has been deleted');
+        },
+        add: function add(index) {
+            this.items.push(index);
+            this.$emit('added');
         }
     }
 
@@ -43953,40 +43963,55 @@ var render = function() {
           : _c("div", { domProps: { textContent: _vm._s(_vm.body) } })
       ]),
       _vm._v(" "),
-      _vm.canUpdate
-        ? _c(
-            "div",
-            {
-              staticClass: "panel-footer level",
-              staticStyle: { padding: "0", "background-color": "white" }
-            },
-            [
-              _c(
-                "button",
-                {
-                  staticClass: "btn btn-link ",
-                  on: {
-                    click: function($event) {
-                      _vm.editing = true
+      _c("div", { staticStyle: { position: "inline" } }, [
+        _vm.canUpdate
+          ? _c(
+              "div",
+              {
+                staticClass: "panel-footer level",
+                staticStyle: {
+                  padding: "0",
+                  "background-color": "white",
+                  float: "left"
+                }
+              },
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-link ",
+                    on: {
+                      click: function($event) {
+                        _vm.editing = true
+                      }
                     }
-                  }
-                },
-                [
-                  _c("i", {
-                    staticClass: "fa fa-pencil-square-o",
-                    staticStyle: { color: "rgb(37, 87, 188)" },
-                    attrs: { "aria-hidden": "true" }
-                  }),
-                  _vm._v(" Edit")
-                ]
-              ),
-              _vm._v(" "),
-              _vm.signedIn
-                ? _c("div", [_c("favorite", { attrs: { reply: _vm.data } })], 1)
-                : _vm._e()
-            ]
-          )
-        : _vm._e()
+                  },
+                  [
+                    _c("i", {
+                      staticClass: "fa fa-pencil-square-o",
+                      staticStyle: { color: "rgb(37, 87, 188)" },
+                      attrs: { "aria-hidden": "true" }
+                    }),
+                    _vm._v(" Edit")
+                  ]
+                )
+              ]
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.signedIn
+          ? _c(
+              "div",
+              [
+                _c("favorite", {
+                  staticStyle: { "padding-left": "10px" },
+                  attrs: { reply: _vm.data }
+                })
+              ],
+              1
+            )
+          : _vm._e()
+      ])
     ]
   )
 }
@@ -44010,22 +44035,30 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    _vm._l(_vm.items, function(reply, index) {
-      return _c(
-        "div",
-        [
-          _c("reply", {
-            attrs: { data: reply },
-            on: {
-              deleted: function($event) {
-                _vm.remove(index)
+    [
+      _vm._l(_vm.items, function(reply, index) {
+        return _c(
+          "div",
+          [
+            _c("reply", {
+              attrs: { data: reply },
+              on: {
+                deleted: function($event) {
+                  _vm.remove(index)
+                }
               }
-            }
-          })
-        ],
-        1
-      )
-    })
+            })
+          ],
+          1
+        )
+      }),
+      _vm._v(" "),
+      _c("new-reply", {
+        attrs: { endpoint: _vm.endpoint },
+        on: { created: _vm.add }
+      })
+    ],
+    2
   )
 }
 var staticRenderFns = []
@@ -44043,6 +44076,235 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 65 */,
+/* 66 */,
+/* 67 */,
+/* 68 */,
+/* 69 */,
+/* 70 */,
+/* 71 */,
+/* 72 */,
+/* 73 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(74)
+}
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(76)
+/* template */
+var __vue_template__ = __webpack_require__(77)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/NewReply.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3c5f5d3e", Component.options)
+  } else {
+    hotAPI.reload("data-v-3c5f5d3e", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 74 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(75);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("c5492d48", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3c5f5d3e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./NewReply.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3c5f5d3e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./NewReply.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 75 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 76 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Reply_vue__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Reply_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Reply_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['endpoint'],
+    data: function data() {
+        return {
+            body: ''
+        };
+    },
+
+    computed: {
+        signedIn: function signedIn() {
+            return window.App.signedIn;
+        }
+    },
+    methods: {
+        addReply: function addReply() {
+            var _this = this;
+
+            axios.post(this.endpoint, { body: this.body }).then(function (_ref) {
+                var data = _ref.data;
+
+
+                flash('Your reply has been posted');
+                _this.$emit('created', data);
+                _this.body = '';
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 77 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _vm.signedIn
+      ? _c("div", [
+          _c("div", { staticClass: "form-group" }, [
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.body,
+                  expression: "body"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: {
+                name: "body",
+                id: "body",
+                placeholder: "Have something to say?",
+                rows: "5",
+                required: ""
+              },
+              domProps: { value: _vm.body },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.body = $event.target.value
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-default",
+              attrs: { type: "submit" },
+              on: { click: _vm.addReply }
+            },
+            [_vm._v("Post")]
+          )
+        ])
+      : _c("p", { staticClass: "text-center" }, [
+          _vm._v("Please\n                "),
+          _c("a", { attrs: { href: "/login" } }, [_vm._v("sign in")]),
+          _vm._v(" to participate in this discussion")
+        ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-3c5f5d3e", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
