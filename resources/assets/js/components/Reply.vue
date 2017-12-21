@@ -5,10 +5,9 @@
 
                         <div class="level">
                                 <h5 class="flex">
-                                        <a :href="'/profiles/'+data.owner.name" v-text="data.owner.name"style="font-weight: 600; font-size: 15px;"></a> said {{data.created_at}}...
+                                        <a :href="'/profiles/'+data.owner.name" v-text="data.owner.name"style="font-weight: 600; font-size: 15px;">
+                                        </a> said <span v-text="ago"></span>
                                 </h5>
-
-                                <!-- @can('update', $reply) -->
                                 <div v-if="canUpdate">                       
                         <button type="submit" class="btn btn-link" style="font-weight: 700; width:30px;margin-top: -45px;
                  margin-right: -17.5px; height:20px;" @click="destroy">
@@ -16,9 +15,6 @@
 
                                 </button>
                                 </div>
- 
-<!-- 
-                                @endcan -->
                         </div>
                 </div>
                 <div class="panel-body">
@@ -51,6 +47,8 @@
 
 <script>   
 import Favorite from './Favorite.vue';
+import moment from 'moment';
+
 export default {
     props:['data'],
     components:{Favorite},
@@ -62,12 +60,14 @@ export default {
        };
    },
    computed:{
+      ago(){
+              return moment(this.data.created_at).fromNow() + '...';
+      },
       signedIn(){
               return window.App.signedIn;
       },
       canUpdate(){
-             return this.authorize(user=>this.data.user_id == user.id);
-            //  return this.data.user_id == window.App.user.id;
+             return this.authorize(user=>this.data.user_id === user.id);
       }
    },
    methods:{
@@ -80,11 +80,8 @@ export default {
        },
        destroy(){
             axios.delete('/replies/'+ this.data.id);
-            this.$emit('deleted', this.data.id);
-        
-           
-       },
-        
+            this.$emit('deleted', this.data.id);   
+       }
    }
 }
 </script>
