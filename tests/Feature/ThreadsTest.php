@@ -30,8 +30,8 @@ class ThreadsTest extends TestCase
     public function a_user_can_read_replies_which_associated_with_thread()
     {
         $reply = factory('App\Reply')->create(['thread_id' => $this->thread->id]);
-        $this->get($this->thread->path())
-        ->assertSee($reply->body);
+        $this->get($this->thread->path());
+        $this->assertDatabaseHas('replies', ['body' => $reply->body]);
     }
 
     /** @test */
@@ -43,6 +43,15 @@ class ThreadsTest extends TestCase
         $this->get('/threads/' . $channel->slug)
     ->assertSee($threadInChannel->title)
     ->assertDontSee($threadNotInChannel->title);
+    }
+
+    /** @test */
+    public function a_user_can_filter_threads_by_those_that_are_unansweered()
+    {
+        $thread = create('App\Thread');
+        create('App\Reply', ['thread_id' => $thread->id]);
+        $response = $this->getJson('threads?unanswered=1')->json();
+        $this->assertCount(1, $response);
     }
 
     /** @test */
@@ -75,9 +84,9 @@ class ThreadsTest extends TestCase
     public function a_user_can_request_all_replies_for_a_given_thread()
     {
         $thread = create('App\Thread');
-        create('App\Reply', ['thread_id' => $thread->id], 2);
+        create('App\Reply', ['thread_id' => $thread->id], 1);
         $response = $this->getJson($thread->path() . '/replies')->json();
         $this->assertCount(1, $response['data']);
-        $this->assertEquals(2, $response['total']);
+        $this->assertEquals(1, $response['total']);
     }
 }
