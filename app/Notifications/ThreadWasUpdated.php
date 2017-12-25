@@ -20,7 +20,7 @@ class ThreadWasUpdated extends Notification
     public function __construct($thread, $reply)
     {
         $this->thread = $thread;
-        $this->$reply = $reply;
+        $this->reply = $reply;
     }
 
     /**
@@ -57,7 +57,8 @@ class ThreadWasUpdated extends Notification
     public function toArray($notifiable)
     {
         return [
-           'message' => 'Temporary placeholder'
+           'message' => $this->reply->owner->name . ' replied to' . $this->thread->title,
+           'link'=>$this->reply->path()
         ];
     }
 }
