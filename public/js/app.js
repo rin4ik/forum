@@ -60016,7 +60016,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     computed: {
         classes: function classes() {
-            return ['fa', this.active ? 'fa-heart ol' : 'fa-heart om'];
+            return [this.active ? 'fa-heart ol' : 'fa-heart om'];
         }
     },
     created: function created() {},
@@ -60057,7 +60057,11 @@ var render = function() {
     [
       _c("span", { domProps: { textContent: _vm._s(_vm.count) } }),
       _vm._v(" "),
-      _c("i", { class: _vm.classes, attrs: { "aria-hidden": "true" } })
+      _c("i", {
+        staticClass: "fa",
+        class: _vm.classes,
+        attrs: { "aria-hidden": "true" }
+      })
     ]
   )
 }
