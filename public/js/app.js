@@ -61265,12 +61265,7 @@ var staticRenderFns = [
         staticClass: "dropdown-complete",
         attrs: { href: "#", "data-toggle": "dropdown" }
       },
-      [
-        _c("i", {
-          staticClass: "fa fa-envelope",
-          attrs: { "aria-hidden": "true" }
-        })
-      ]
+      [_c("i", { staticClass: "fa fa-bell", attrs: { "aria-hidden": "true" } })]
     )
   }
 ]

@@ -20,6 +20,12 @@
       ])!!};
       </script>
 <style>
+.badge-notify{
+   background:red;
+   position:relative;
+   
+   left: -130px;
+  }
     body{
         background-color: #F8F6F2;
         padding-bottom: 100px;
