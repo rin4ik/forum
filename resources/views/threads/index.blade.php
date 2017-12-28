@@ -10,11 +10,17 @@ padding-left: 15px; padding-right:15px; background-color: rgba(49, 52, 53, 0.1);
                         <h4 class="flex">
                             <a href="{{ $thread->path() }}" style="font-weight: 400;
 font-size: 17px;">
-                                {{ $thread->title }}
-                            </a>
-                        </h4>
+                               
+                         
 
                         <a href="{{ $thread->path() }}">
+                        @if($thread->hasUpdatesFor(auth()->user()))
+                     <strong>{{ $thread->title }}</strong>
+                        @else
+                         {{ $thread->title }}
+                        @endif
+   </a>
+                        </h4>
                             {{ $thread->replies_count }} {{ str_plural('reply', $thread->replies_count) }}
                         </a>
                     </div>

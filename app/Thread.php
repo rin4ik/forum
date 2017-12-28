@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Events\ThreadHasNewReply;
 
 class Thread extends Model
 {
@@ -45,9 +44,18 @@ class Thread extends Model
         $reply = $this->replies()->create($reply);
 
         $this->notifySubscribers($reply);
-     
+
         return $reply;
     }
+
+    public function hasUpdatesFor($user)
+    {
+        if (auth()->check()) {
+            $key = $user->visitedThreadCacheKey($this);
+            return $this->updated_at > cache($key);
+        }
+    }
+
     public function notifySubscribers($reply)
     {
         $this->subscriptions
@@ -55,6 +63,7 @@ class Thread extends Model
         ->each
         ->notify($reply);
     }
+
     public function scopeFilter($query, $filters)
     {
         return $filters->apply($query);
