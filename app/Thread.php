@@ -50,10 +50,8 @@ class Thread extends Model
 
     public function hasUpdatesFor($user)
     {
-        if (auth()->check()) {
-            $key = $user->visitedThreadCacheKey($this);
-            return $this->updated_at > cache($key);
-        }
+        $key = $user->visitedThreadCacheKey($this);
+        return $this->updated_at > cache($key);
     }
 
     public function notifySubscribers($reply)

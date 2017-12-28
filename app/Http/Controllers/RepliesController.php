@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Thread;
 use App\Reply;
+use App\Spam;
 
 class RepliesController extends Controller
 {
@@ -14,13 +15,13 @@ class RepliesController extends Controller
 
     public function index($channelId, Thread $thread)
     {
-        return $thread->replies()->orderBy('created_at','desc')->paginate(20);
+        return $thread->replies()->orderBy('created_at', 'desc')->paginate(20);
     }
 
-    public function store($replyId, Thread $thread)
+    public function store($replyId, Thread $thread, Spam $spam)
     {
         $this->validate(request(), ['body' => 'required']);
-
+        $spam->detect(request('body'));
         $reply = $thread->addReply([
             'body' => request('body'),
             'user_id' => auth()->id()
