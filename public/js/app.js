@@ -28337,7 +28337,7 @@ return zhTw;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(136);
-module.exports = __webpack_require__(197);
+module.exports = __webpack_require__(200);
 
 
 /***/ }),
@@ -28368,7 +28368,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('flash', __webpack_require
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('thread-view', __webpack_require__(168));
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('paginator', __webpack_require__(194));
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('user-notifications', __webpack_require__(206));
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('user-notifications', __webpack_require__(197));
 
 var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
   el: '#app'
@@ -59874,7 +59874,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     computed: {
         ago: function ago() {
-            return __WEBPACK_IMPORTED_MODULE_1_moment___default()(this.data.created_at).fromNow() + '...';
+            return __WEBPACK_IMPORTED_MODULE_1_moment___default()(this.data.created_at).add(120, 'minutes').from(__WEBPACK_IMPORTED_MODULE_1_moment___default()()) + '...';
         },
         signedIn: function signedIn() {
             return window.App.signedIn;
@@ -61122,28 +61122,14 @@ if (false) {
 
 /***/ }),
 /* 197 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 198 */,
-/* 199 */,
-/* 200 */,
-/* 201 */,
-/* 202 */,
-/* 203 */,
-/* 204 */,
-/* 205 */,
-/* 206 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
-var __vue_script__ = __webpack_require__(207)
+var __vue_script__ = __webpack_require__(198)
 /* template */
-var __vue_template__ = __webpack_require__(208)
+var __vue_template__ = __webpack_require__(199)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -61183,7 +61169,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 207 */
+/* 198 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -61223,7 +61209,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 208 */
+/* 199 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -61277,6 +61263,12 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-c0045994", module.exports)
   }
 }
+
+/***/ }),
+/* 200 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

@@ -61,7 +61,7 @@ export default {
    },
    computed:{
       ago(){
-              return moment(this.data.created_at).fromNow() + '...';
+              return moment(this.data.created_at).add(120, 'minutes').from(moment())+'...';
       },
       signedIn(){
               return window.App.signedIn;
