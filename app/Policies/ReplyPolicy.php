@@ -19,7 +19,6 @@ class ReplyPolicy
      */
     public function view(User $user, Reply $reply)
     {
-        //
     }
 
     /**
@@ -30,7 +29,11 @@ class ReplyPolicy
      */
     public function create(User $user)
     {
-        //
+        if (!$lastReply = $user->fresh()->lastReply) {
+            return true;
+        }
+
+        return !$lastReply->wasJustPublished();
     }
 
     /**

@@ -77,9 +77,11 @@ export default {
            })
            .catch(error => {
                    flash(error.response.data, 'danger');
-           });
-           this.editing = false;  
-           flash('Updated!');
+           })
+           .then(function() {
+            this.editing = false;
+            flash('Updated!');
+         });
        },
        destroy(){
             axios.delete('/replies/'+ this.data.id);
