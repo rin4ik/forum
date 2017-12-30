@@ -1,7 +1,9 @@
 <template>
-  <button class="btn" :class="classes" @click="subscribe" v-text="sss">
+<div v-if="signedIn">  <button class="btn" :class="classes" @click="subscribe" v-text="sss">
                       
   </button>
+</div>
+
 </template>
 <script>
 export default {
@@ -18,7 +20,10 @@ export default {
       },
       sss(){
          return this.actived? 'Subscribed':'Subscribe'
-      }
+      },
+        signedIn(){
+                    return window.App.signedIn;
+                }
       
   },
   methods:{

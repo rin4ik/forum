@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Thread;
 use App\Reply;
-use App\Inspections\Spam;
 
 class RepliesController extends Controller
 {
@@ -18,17 +17,20 @@ class RepliesController extends Controller
         return $thread->replies()->orderBy('created_at', 'desc')->paginate(20);
     }
 
-    public function store($replyId, Thread $thread, Spam $spam)
+    public function store($replyId, Thread $thread)
     {
-        $this->validate(request(), ['body' => 'required']);
-        $spam->detect(request('body'));
-        $reply = $thread->addReply([
-            'body' => request('body'),
-            'user_id' => auth()->id()
-        ]);
-        if (request()->expectsJson()) {
-            return $reply->load('owner');
+        try {
+            \request()->validate(['body' => 'required|spamfree']);
+
+            $reply = $thread->addReply([
+                'body' => request('body'),
+                'user_id' => auth()->id()
+            ]);
+        } catch (\Exception $e) {
+            return response('Sorry, your reply could not be saved at this time', 422);
         }
+
+        return $reply->load('owner');
 
         return back()
         ->with('flash', 'Your reply has been left');
@@ -45,12 +47,15 @@ class RepliesController extends Controller
         return back();
     }
 
-    public function update(Reply $reply, Spam $spam)
+    public function update(Reply $reply)
     {
         $this->authorize('update', $reply);
-        $this->validate(request(), ['body' => 'required']);
-        $spam->detect(request('body'));
+        try {
+            \request()->validate(['body' => 'required|spamfree']);
 
-        $reply->update(request(['body']));
+            $reply->update(request(['body']));
+        } catch (\Exception $e) {
+            return response('Sorry, your reply could not be saved', 422);
+        }
     }
 }
