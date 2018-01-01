@@ -21,14 +21,11 @@
       ])!!};
       </script>
 <style>
-* {
-    box-sizing:border-box;
-}
-  
+
+ 
     body{
                                font-family: 'Encode Sans Expanded', sans-serif;
-
-        background-color: #F8F6F2;
+background-color: #fbfbfb;
         padding-bottom: 100px;
     }
     [v-cloak]{
@@ -49,6 +46,7 @@
         flex: 1;
 
     }
+   
 </style>
 </head>
  <body>

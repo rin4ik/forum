@@ -28,20 +28,20 @@
                         <div v-else v-text="body">  
                         </div>
                 </div>
-
- <div style="position:inline">
-                <div class="panel-footer level" v-if="canUpdate" style="padding: 0; background-color: white; float:left">
+<hr style="margin:0; width:15%">
+                <div v-if="canUpdate" style="padding: 0; background-color: white; float:left">
                         
                         <button class="btn btn-link " @click="editing = true">
                                 <i class="fa fa-pencil-square-o" style="color:rgb(37, 87, 188)" aria-hidden="true"></i> Edit</button>
                       
                   
-</div>       <div v-if="signedIn">
+                </div>       
+                        
+                        <div v-if="signedIn">
                         <favorite :reply="data" style="padding-left:10px;"></favorite> 
 
-                </div> 
+                        </div> 
 </div>
-        </div>
 
 </template>
 

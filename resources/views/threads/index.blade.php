@@ -5,9 +5,9 @@
             @forelse($threads as $thread)
             <div class="panel panel-default">
                 <div class="panel-heading" style="padding: 0px;
-padding-left: 15px; padding-right:15px; background-color: rgba(49, 52, 53, 0.1);border-radius: 5px; ">
+padding-left: 10px; padding-right:10px; background-color: rgba(49, 52, 53, 0.1);border-radius: 5px; ">
                     <div class="level">
-                        <h4 class="flex">
+                        <h4 class="flex" style="margin: 6px; padding:4px; padding-left:0">
                             <a href="{{ $thread->path() }}" style="font-weight: 700;
 font-size: 17px;">
                                
@@ -15,9 +15,9 @@ font-size: 17px;">
 
                         <a href="{{ $thread->path() }}">
                         @if(auth()->check() && $thread->hasUpdatesFor(auth()->user()))
-                     <p style="font-weight:500;font-size:18px; color:#216388">{{ $thread->title }}</p>
+                     <p style="font-size:16px; margin: 0; color:rgb(16, 16, 16)">{{ $thread->title }}</p>
                         @else
-                         {{ $thread->title }}
+                         <p style="font-size:16px;margin: 0; color:rgb(80, 90, 96)"> {{ $thread->title }}</p>
                         @endif
    </a>
                         </h4>
@@ -28,7 +28,7 @@ font-size: 17px;">
                 </div>
 
                 <div class="panel-body">
-                    <div class="body">{{ $thread->body }}</div>
+                    <div class="body" style="padding-left:2px">{{ $thread->body }}</div>
                     <div class="level" style="padding: 0; background-color: white; float:right; padding-top:10px">
                         created by
                         <a href="/profiles/{{$thread->creator->name}}" style="margin-left:3px;margin-right:3px ">

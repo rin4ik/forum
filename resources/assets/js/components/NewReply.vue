@@ -5,9 +5,9 @@
             <!-- <form method="POST" action="{{$thread->path().'/replies'}}"> -->
                 <!-- {{csrf_field()}} -->
                 <div class="form-group">
-                    <textarea name="body" id="body" class="form-control" placeholder="Have something to say?" rows="5" v-model="body" required></textarea>
+                    <textarea name="body" id="body" class="form-control" placeholder="Jot something down" rows="5" v-model="body" required></textarea>
                </div>
-                <button type="submit" @click="addReply" class="btn btn-default">Post</button>
+                <button type="submit" @click="addReply" class="btn btn-primary">Post</button>
             <!-- </form> -->
 </div>
 

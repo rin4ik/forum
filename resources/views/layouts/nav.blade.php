@@ -1,4 +1,5 @@
-<nav class="navbar navbar-default navbar-static-top">
+<nav class="navbar navbar-default navbar-static-top" style="background-color:hsl(0, 0%, 96%); border-bottom: 1px double  rgb(176, 180, 183); border-radius:4px; ">
+    
     <div class="container">
         <div class="navbar-header">
 
@@ -75,9 +76,9 @@
                 @else
                 <user-notifications></user-notifications>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" >
                         {{ Auth::user()->name }}
-                        <span class="caret"></span>
+                        <span class="caret"     ></span>
                     </a>
 
                     <ul class="dropdown-menu">

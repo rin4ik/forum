@@ -41,7 +41,7 @@
                         <favorite :reply="{{$reply}}"></favorite>
 
     
-@endauth
+                           @endauth
                 </div>
 
         </div>

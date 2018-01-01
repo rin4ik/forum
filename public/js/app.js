@@ -60461,55 +60461,54 @@ var render = function() {
           : _c("div", { domProps: { textContent: _vm._s(_vm.body) } })
       ]),
       _vm._v(" "),
-      _c("div", { staticStyle: { position: "inline" } }, [
-        _vm.canUpdate
-          ? _c(
-              "div",
-              {
-                staticClass: "panel-footer level",
-                staticStyle: {
-                  padding: "0",
-                  "background-color": "white",
-                  float: "left"
-                }
-              },
-              [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-link ",
-                    on: {
-                      click: function($event) {
-                        _vm.editing = true
-                      }
+      _c("hr", { staticStyle: { margin: "0", width: "15%" } }),
+      _vm._v(" "),
+      _vm.canUpdate
+        ? _c(
+            "div",
+            {
+              staticStyle: {
+                padding: "0",
+                "background-color": "white",
+                float: "left"
+              }
+            },
+            [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-link ",
+                  on: {
+                    click: function($event) {
+                      _vm.editing = true
                     }
-                  },
-                  [
-                    _c("i", {
-                      staticClass: "fa fa-pencil-square-o",
-                      staticStyle: { color: "rgb(37, 87, 188)" },
-                      attrs: { "aria-hidden": "true" }
-                    }),
-                    _vm._v(" Edit")
-                  ]
-                )
-              ]
-            )
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.signedIn
-          ? _c(
-              "div",
-              [
-                _c("favorite", {
-                  staticStyle: { "padding-left": "10px" },
-                  attrs: { reply: _vm.data }
-                })
-              ],
-              1
-            )
-          : _vm._e()
-      ])
+                  }
+                },
+                [
+                  _c("i", {
+                    staticClass: "fa fa-pencil-square-o",
+                    staticStyle: { color: "rgb(37, 87, 188)" },
+                    attrs: { "aria-hidden": "true" }
+                  }),
+                  _vm._v(" Edit")
+                ]
+              )
+            ]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.signedIn
+        ? _c(
+            "div",
+            [
+              _c("favorite", {
+                staticStyle: { "padding-left": "10px" },
+                attrs: { reply: _vm.data }
+              })
+            ],
+            1
+          )
+        : _vm._e()
     ]
   )
 }
@@ -60701,7 +60700,7 @@ var render = function() {
               attrs: {
                 name: "body",
                 id: "body",
-                placeholder: "Have something to say?",
+                placeholder: "Jot something down",
                 rows: "5",
                 required: ""
               },
@@ -60720,7 +60719,7 @@ var render = function() {
           _c(
             "button",
             {
-              staticClass: "btn btn-default",
+              staticClass: "btn btn-primary",
               attrs: { type: "submit" },
               on: { click: _vm.addReply }
             },

@@ -4,10 +4,10 @@
     <div class="row">
         <div class="col-md-8">
             <div class="panel panel-default">
-                <div class="panel-heading alert-success" style="padding: 0;padding-left: 15px;">
+                <div class="panel-heading alert-success" style="padding: 0;padding-left: 10px;">
                     <div class="level">
                         <span class="flex" style="
-font-size: 18px;"> {{$thread->title}}</span>
+font-size: 18px;    padding: 10px;"> {{$thread->title}}</span>
                         @can('update', $thread)
                         <form action="{{$thread->path()}}" method="POST">
                             {{csrf_field()}} {{method_field('DELETE')}}

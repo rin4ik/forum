@@ -12,15 +12,18 @@
         <!-- Styles -->
         <style>
                     html, body {
-                background-color: #F8F6F2;
-                color: #A7EC4B;
+                background-color: #eee0;
+                color: #FFF;
                        font-family: 'Encode Sans Expanded', sans-serif;
 
                 font-weight: 500;
                 height: 100vh;
                 margin: 0;
             }
+ .links > a{
+    color: #555;
 
+    }
             .full-height {
                 height: 80vh;
             }
