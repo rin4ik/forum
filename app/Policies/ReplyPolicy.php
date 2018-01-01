@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\User;
 use App\Reply;
+use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ReplyPolicy
@@ -11,37 +11,11 @@ class ReplyPolicy
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view the reply.
+     * Determine if the authenticated user has permission to update a reply.
      *
-     * @param  \App\User  $user
-     * @param  \App\Reply  $reply
-     * @return mixed
-     */
-    public function view(User $user, Reply $reply)
-    {
-    }
-
-    /**
-     * Determine whether the user can create replies.
-     *
-     * @param  \App\User  $user
-     * @return mixed
-     */
-    public function create(User $user)
-    {
-        if (!$lastReply = $user->fresh()->lastReply) {
-            return true;
-        }
-
-        return !$lastReply->wasJustPublished();
-    }
-
-    /**
-     * Determine whether the user can update the reply.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Reply  $reply
-     * @return mixed
+     * @param  User  $user
+     * @param  Reply $reply
+     * @return bool
      */
     public function update(User $user, Reply $reply)
     {
@@ -49,14 +23,16 @@ class ReplyPolicy
     }
 
     /**
-     * Determine whether the user can delete the reply.
+     * Determine if the authenticated user has permission to create a new reply.
      *
-     * @param  \App\User  $user
-     * @param  \App\Reply  $reply
-     * @return mixed
+     * @param  User $user
+     * @return bool
      */
-    public function delete(User $user, Reply $reply)
+    public function create(User $user)
     {
-        //
+        if (!$lastReply = $user->fresh()->lastReply) {
+            return true;
+        }
+        return !$lastReply->wasJustPublished();
     }
 }

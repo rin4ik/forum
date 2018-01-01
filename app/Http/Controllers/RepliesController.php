@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Thread;
 use App\Reply;
+use App\Http\Requests\CreatePostRequest;
 
 class RepliesController extends Controller
 {
@@ -17,25 +18,12 @@ class RepliesController extends Controller
         return $thread->replies()->orderBy('created_at', 'desc')->paginate(20);
     }
 
-    public function store($replyId, Thread $thread)
+    public function store($replyId, Thread $thread, CreatePostRequest $form)
     {
-        if (\Gate::denies('create', new Reply)) {
-            return response(
-                             'You are posting too frequently. Please take a break. :)',
-                429
-                         );
-        }
-        try {
-            \request()->validate(['body' => 'required|spamfree']);
-            $reply = $thread->addReply([
+        return $thread->addReply([
                 'body' => request('body'),
                 'user_id' => auth()->id()
-            ]);
-        } catch (\Exception $e) {
-            return response('Sorry, your reply could not be saved at this time', 422);
-        }
-
-        return $reply->load('owner');
+            ])->load('owner');
 
         return back()
         ->with('flash', 'Your reply has been left');
