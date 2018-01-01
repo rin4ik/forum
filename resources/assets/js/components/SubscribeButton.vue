@@ -34,7 +34,7 @@ export default {
       subscribe(){
           axios[(this.actived ? 'delete' : 'post')](location.pathname + '/subscriptions');
           this.actived =!this.actived;
-          flash('Subscribed');
+          flash('Subscribed!');
       }
   }
  

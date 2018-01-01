@@ -8,14 +8,14 @@
 padding-left: 15px; padding-right:15px; background-color: rgba(49, 52, 53, 0.1);border-radius: 5px; ">
                     <div class="level">
                         <h4 class="flex">
-                            <a href="{{ $thread->path() }}" style="font-weight: 400;
+                            <a href="{{ $thread->path() }}" style="font-weight: 700;
 font-size: 17px;">
                                
                          
 
                         <a href="{{ $thread->path() }}">
                         @if(auth()->check() && $thread->hasUpdatesFor(auth()->user()))
-                     <strong>{{ $thread->title }}</strong>
+                     <p style="font-weight:500;font-size:18px; color:#216388">{{ $thread->title }}</p>
                         @else
                          {{ $thread->title }}
                         @endif

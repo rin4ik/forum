@@ -5,7 +5,7 @@
 
                         <div class="level">
                                 <h5 class="flex">
-                                        <a :href="'/profiles/'+data.owner.name" v-text="data.owner.name"style="font-weight: 600; font-size: 15px;">
+                                        <a :href="'/profiles/'+data.owner.name" v-text="data.owner.name"style="font-weight: 550; font-size: 16px;">
                                         </a> said <span v-text="ago"></span>
                                 </h5>
                                 <div v-if="canUpdate">                       
@@ -77,9 +77,11 @@ export default {
            })
            .catch(error => {
                    flash(error.response.data, 'danger');
-           });
-            this.editing = false;
+           }).then(({data}) => {
+                       this.editing = false;
             flash('Updated!!');
+                    });
+            
        },
        destroy(){
             axios.delete('/replies/'+ this.data.id);

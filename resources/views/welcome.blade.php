@@ -8,14 +8,14 @@
         <title>Forum</title>
 
         <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
+        <link href="https://fonts.googleapis.com/css?family=Encode+Sans+Expanded" rel="stylesheet">
         <!-- Styles -->
         <style>
                     html, body {
                 background-color: #F8F6F2;
                 color: #A7EC4B;
-                font-family: 'Raleway', sans-serif;
+                       font-family: 'Encode Sans Expanded', sans-serif;
+
                 font-weight: 500;
                 height: 100vh;
                 margin: 0;
@@ -47,14 +47,13 @@
 
             .title {
                 font-size: 84px;
-                font-weight: 600;
+                font-weight: 400;
             }
 
             .links > a {
-                color: #636b6f;
                 padding: 0 25px;
                 font-size: 12px;
-                font-weight: 700;
+                font-weight: 600;
                 letter-spacing: .1rem;
                 text-decoration: none;
                 text-transform: uppercase;
@@ -79,11 +78,11 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md" style="color:#2B3ED7 ">
+                <div class="title m-b-md" style="color:#ea2742">
                     Forum
                 </div>
                 <div class="title m-b-md">
-               <a href="/threads" style="text-decoration: none;color:#19DE34 ">Threads</a>
+               <a href="/threads" style="text-decoration: none; color:#727b7b">Threads</a>
                 </div>
             
             </div>

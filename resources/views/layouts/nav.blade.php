@@ -73,7 +73,7 @@
                     <a href="{{ route('register') }}">Register</a>
                 </li>
                 @else
-                <user-notifications></user-notifications><span class="badge badge-notify" style="border-radius:35px;padding: 3px 6px;">2</span>
+                <user-notifications></user-notifications>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
                         {{ Auth::user()->name }}

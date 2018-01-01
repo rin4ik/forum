@@ -6,12 +6,12 @@
             <div class="panel panel-default">
                 <div class="panel-heading alert-success" style="padding: 0;padding-left: 15px;">
                     <div class="level">
-                        <span class="flex" style="font-weight: 400;
-font-size: 20px;"> {{$thread->title}}</span>
+                        <span class="flex" style="
+font-size: 18px;"> {{$thread->title}}</span>
                         @can('update', $thread)
                         <form action="{{$thread->path()}}" method="POST">
                             {{csrf_field()}} {{method_field('DELETE')}}
-                            <button type="submit" class="btn btn-link" style="font-weight: 700;"> Delete Thread</button>
+                            <button type="submit" class="btn btn-link" > Delete Thread</button>
                         </form> @endcan
                     </div>
 
@@ -24,7 +24,7 @@ font-size: 20px;"> {{$thread->title}}</span>
                         <h4>{{$thread->body}}</h4>
                     </article>
                     <p style="text-align:right;"> posted by
-                        <a href="/profiles/{{$thread->creator->name}}" style="font-weight: 500; font-size: 15px;">{{$thread->creator->name}}</a>
+                        <a href="/profiles/{{$thread->creator->name}}" >{{$thread->creator->name}}</a>
 
                     </p>
 

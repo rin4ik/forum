@@ -99,7 +99,7 @@ class ThreadsController extends Controller
         }
 
         return redirect('/threads')
-        ->with('flash', "You've deleted thread");
+        ->with('flash', 'You have deleted a thread');
     }
 
     /**

@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link href="https://fonts.googleapis.com/css?family=Encode+Sans+Expanded" rel="stylesheet">
    <link rel="icon" href="/img/img10.png">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -20,13 +21,13 @@
       ])!!};
       </script>
 <style>
-.badge-notify{
-   background:red;
-   position:relative;
-   
-   left: -130px;
-  }
+* {
+    box-sizing:border-box;
+}
+  
     body{
+                               font-family: 'Encode Sans Expanded', sans-serif;
+
         background-color: #F8F6F2;
         padding-bottom: 100px;
     }

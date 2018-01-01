@@ -59797,7 +59797,7 @@ exports = module.exports = __webpack_require__(3)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -59891,13 +59891,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     methods: {
         update: function update() {
+            var _this2 = this;
+
             axios.patch('/replies/' + this.data.id, {
                 body: this.body
             }).catch(function (error) {
                 flash(error.response.data, 'danger');
+            }).then(function (_ref) {
+                var data = _ref.data;
+
+                _this2.editing = false;
+                flash('Updated!!');
             });
-            this.editing = false;
-            flash('Updated!!');
         },
         destroy: function destroy() {
             axios.delete('/replies/' + this.data.id);
@@ -60367,7 +60372,7 @@ var render = function() {
           _c("div", { staticClass: "level" }, [
             _c("h5", { staticClass: "flex" }, [
               _c("a", {
-                staticStyle: { "font-weight": "600", "font-size": "15px" },
+                staticStyle: { "font-weight": "550", "font-size": "16px" },
                 attrs: { href: "/profiles/" + _vm.data.owner.name },
                 domProps: { textContent: _vm._s(_vm.data.owner.name) }
               }),
@@ -60605,7 +60610,7 @@ exports = module.exports = __webpack_require__(3)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -60663,10 +60668,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).then(function (_ref) {
                 var data = _ref.data;
 
-
-                flash('Your reply has been posted');
-                _this.$emit('created', data);
                 _this.body = '';
+                flash('Your reply has been posted.');
+                _this.$emit('created', data);
             });
         }
     }
@@ -60905,7 +60909,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         subscribe: function subscribe() {
             axios[this.actived ? 'delete' : 'post'](location.pathname + '/subscriptions');
             this.actived = !this.actived;
-            flash('Subscribed');
+            flash('Subscribed!');
         }
     }
 
