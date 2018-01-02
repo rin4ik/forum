@@ -1,11 +1,11 @@
 <template>
         <div :id="'reply-'+id" class="panel panel-default">
-                <div class="panel-heading" style="padding-top: 0px;background-color: #2672;border-radius: 5px;
+                <div class="panel-heading" style="padding-top: 0px;background-color: rgba(49, 52, 53, 0.1);border-radius: 5px;
      padding-bottom: 0px;">
 
                         <div class="level">
                                 <h5 class="flex">
-                                        <a :href="'/profiles/'+data.owner.name" v-text="data.owner.name"style="font-weight: 550; font-size: 16px;">
+                                        <a :href="'/profiles/'+data.owner.name" v-text="data.owner.name"style=" font-size: 16px;">
                                         </a> said <span v-text="ago"></span>
                                 </h5>
                                 <div v-if="canUpdate">                       

@@ -60363,7 +60363,7 @@ var render = function() {
           staticClass: "panel-heading",
           staticStyle: {
             "padding-top": "0px",
-            "background-color": "#2672",
+            "background-color": "rgba(49, 52, 53, 0.1)",
             "border-radius": "5px",
             "padding-bottom": "0px"
           }
@@ -60372,7 +60372,7 @@ var render = function() {
           _c("div", { staticClass: "level" }, [
             _c("h5", { staticClass: "flex" }, [
               _c("a", {
-                staticStyle: { "font-weight": "550", "font-size": "16px" },
+                staticStyle: { "font-size": "16px" },
                 attrs: { href: "/profiles/" + _vm.data.owner.name },
                 domProps: { textContent: _vm._s(_vm.data.owner.name) }
               }),

@@ -1,6 +1,6 @@
  @component('profiles.activities.activity')
 @slot('heading')
-<i id="heart" class="fa fa-thumbs-up" aria-hidden="true"></i>
+<i id="heart" class="fa fa-thumbs-o-up" aria-hidden="true"></i>
 
   <a href="{{$activ->subject->favorited->path()}}" style="
      margin-left:2px;">
