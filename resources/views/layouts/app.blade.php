@@ -10,7 +10,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="https://use.fontawesome.com/21fa307658.js"></script>
-    <title>{{ config('app.name') }}</title>
+    <title>Forum</title>
 
     <!-- Styles -->
       <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -41,6 +41,9 @@ background-color: #fbfbfb;
     .level{
 
         display: flex;align-items: center;
+    }
+    a:hover{
+        text-decoration:none
     }
     .flex{
         flex: 1;

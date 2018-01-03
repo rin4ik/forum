@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -13,7 +12,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Forum'),
+    'name' => env('APP_NAME', 'FORUM'),
 
     /*
     |--------------------------------------------------------------------------
@@ -137,7 +136,6 @@ return [
     */
 
     'providers' => [
-
         /*
          * Laravel Framework Service Providers...
          */
@@ -177,7 +175,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         'Collective\Html\HtmlServiceProvider',
-
     ],
 
     /*
@@ -192,7 +189,6 @@ return [
     */
 
     'aliases' => [
-
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
         'Auth' => Illuminate\Support\Facades\Auth::class,
@@ -226,9 +222,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-          'Form'      => 'Illuminate\Html\FormFacade',
-    'Html'      => 'Illuminate\Html\HtmlFacade',
-
+          'Form' => 'Illuminate\Html\FormFacade',
+    'Html' => 'Illuminate\Html\HtmlFacade',
     ],
-
 ];

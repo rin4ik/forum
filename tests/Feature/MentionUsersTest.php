@@ -21,4 +21,15 @@ class MentionUsersTest extends TestCase
         $this->json('post', $thread->path() . '/replies', $reply->toArray());
         $this->assertCount(1, $jane->notifications);
     }
+
+    /**
+     * @test
+     *  */
+    public function it_can_detect_all_mentioned_users_in_the_body()
+    {
+        $reply = make('App\Reply', [
+            'body' => '@JaneDoe :  you are @john an asshole'
+        ]);
+        $this->assertEquals(['JaneDoe', 'john'], $reply->mentionedUsers());
+    }
 }
