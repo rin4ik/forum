@@ -60459,7 +60459,7 @@ var render = function() {
                 )
               ])
             ])
-          : _c("div", { domProps: { textContent: _vm._s(_vm.body) } })
+          : _c("div", { domProps: { innerHTML: _vm._s(_vm.body) } })
       ]),
       _vm._v(" "),
       _c("hr", { staticStyle: { margin: "0", width: "15%" } }),
