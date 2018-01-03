@@ -22,4 +22,24 @@ class ReplyTest extends TestCase
         $reply->created_at = Carbon::now()->subMonth();
         $this->assertFalse($reply->wasJustPublished());
     }
+
+    /**
+     * @test
+     *  */
+    public function it_can_detect_all_mentioned_users_in_the_body()
+    {
+        $reply = new \App\Reply([
+            'body' => '@JaneDoe :  you are @john an asshole'
+        ]);
+        $this->assertEquals(['JaneDoe', 'john'], $reply->mentionedUsers());
+    }
+
+    /** @test*/
+    public function it_wraps_usernames_in_the_body_within_anchor_tags()
+    {
+        $reply = new \App\Reply([
+            'body' => 'Hello @Jane-Doe.'
+        ]);
+        $this->assertEquals('Hello <a href="/profiles/Jane-Doe">@Jane-Doe</a>.', $reply->body);
+    }
 }
