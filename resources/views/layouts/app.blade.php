@@ -13,6 +13,7 @@
     <title>Forum</title>
 
     <!-- Styles -->
+    
       <link href="{{ asset('css/app.css') }}" rel="stylesheet">
       <script>
       window.App={!!json_encode(['csrfToken'=>csrf_token(),
@@ -20,6 +21,7 @@
       'signedIn'=>Auth::check()
       ])!!};
       </script>
+       @yield('header')
 <style>
 
  

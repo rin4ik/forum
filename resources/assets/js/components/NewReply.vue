@@ -22,11 +22,27 @@
 
 <script>   
     import Reply from './Reply.vue';
+    import 'at.js';
+    import 'jquery.caret';
 export default {
             data(){
             return{
                 body:''
             };
+            },
+            mounted(){
+                $('#body').atwho({
+                    at:"@",
+                    delay:2000,
+                    callbacks:{
+                        remoteFilter:function(query, callback){
+                      console.log('called');
+                            $.getJSON("/api/users", {name:query}, function(usernames){
+                                callback(usernames)
+                            });
+                        }
+                    }
+                });
             },
             computed:{
                 signedIn(){
