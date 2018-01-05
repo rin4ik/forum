@@ -22,6 +22,7 @@ class MentionUsersTest extends TestCase
         $this->assertCount(1, $jane->notifications);
     }
 
+
     /**
      * @test
      */

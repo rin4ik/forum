@@ -33,6 +33,7 @@ class ThreadsController extends Controller
         if (request()->wantsJson()) {
             return $threads;
         }
+
         return view('threads.index', compact('threads'));
     }
 
@@ -115,6 +116,6 @@ class ThreadsController extends Controller
         if ($channel->exists) {
             $threads->where('channel_id', $channel->id);
         }
-        return $threads->get();
+        return $threads->paginate(10);
     }
 }

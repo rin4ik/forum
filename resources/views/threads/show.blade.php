@@ -4,6 +4,7 @@
 @endsection
  @section('content')
 <thread-view :initial-replies-count="{{$thread->replies_count}}" inline-template>
+    
 <div class="container" ii>
     <div class="row">
         <div class="col-md-8">
@@ -42,7 +43,11 @@ font-size: 18px;    padding: 10px;"> {{$thread->title}}</span>
 
 
                 <div class="panel-body">
-
+<div class="list-group">
+    <button type="button" class="list-group-item list-group-item-action active">Active item</button>
+    <button type="button" class="list-group-item list-group-item-action">Item</button>
+    <button type="button" class="list-group-item list-group-item-action disabled">Disabled item</button>
+</div>
                     <p>
                         This thread was published {{$thread->created_at->diffForHumans()}} by
                         <a href="#">{{$thread->creator->name}}</a>, and currently has <span v-text="repliesCount"> </span>{{str_plural(' comment',$thread->replies_count)}}.
