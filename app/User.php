@@ -18,7 +18,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password', 'avatar_path'
     ];
-
+              
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -33,9 +33,9 @@ class User extends Authenticatable
         return 'name';
     }
 
-    public function avatar()
+    public function getAvatarPathAttribute($avatar)
     {
-        return asset($this->avatar_path ?: 'avatars/default.jpg');
+        return asset($avatar ?: 'avatars/default.png');
     }
 
     public function threads()

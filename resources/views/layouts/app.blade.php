@@ -38,6 +38,27 @@
 			content: "\f087";
 		}
 
+		.btn-file {
+			position: relative;
+			overflow: hidden;
+		}
+
+		.btn-file input[type=file] {
+			position: absolute;
+			top: 0;
+			right: 0;
+			min-width: 100%;
+			min-height: 100%;
+			font-size: 100px;
+			text-align: right;
+			filter: alpha(opacity=0);
+			opacity: 0;
+			outline: none;
+			background: white;
+			cursor: inherit;
+			display: block;
+		}
+
 		#heart {
 			text-shadow: 1px 1px 1px #f0d1d1;
 			font-size: 1.1em;
