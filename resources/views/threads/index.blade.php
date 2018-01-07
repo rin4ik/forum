@@ -7,7 +7,7 @@
 		<div class="col-md-4">
 			@if(count($trending))
 			<div class="panel panel-default">
-				<div class="panel-heading">
+				<div class="panel-heading" style="background-color: rgba(49, 52, 53, 0.1);border-radius: 5px; text-align:center">
 					<b>Trending Threads</b>
 				</div>
 				<div class="panel-body">
