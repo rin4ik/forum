@@ -62560,37 +62560,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['active'],
-    data: function data() {
-        return {
-            actived: this.active,
-            message: []
-        };
-    },
+  props: ["active"],
+  data: function data() {
+    return {
+      actived: this.active,
+      message: []
+    };
+  },
 
-    computed: {
-        classes: function classes() {
-            return ['btn', this.actived ? 'btn-primary' : 'btn-default'];
-        },
-        sss: function sss() {
-            return this.actived ? 'Subscribed' : 'Subscribe';
-        },
-        signedIn: function signedIn() {
-            return window.App.signedIn;
-        }
+  computed: {
+    classes: function classes() {
+      return ["btn", this.actived ? "btn-primary" : "btn-default"];
     },
-    methods: {
-        messWhich: function messWhich() {
-            message = [];
-            return message;
-        },
-        subscribe: function subscribe() {
-            axios[this.actived ? 'delete' : 'post'](location.pathname + '/subscriptions');
-            this.actived = !this.actived;
-            flash('Subscribed!');
-        }
+    sss: function sss() {
+      return this.actived ? "Subscribed" : "Subscribe";
+    },
+    signedIn: function signedIn() {
+      return window.App.signedIn;
     }
-
+  },
+  methods: {
+    messWhich: function messWhich() {
+      message = [];
+      return message;
+    },
+    subscribe: function subscribe() {
+      axios[this.actived ? "delete" : "post"](location.pathname + "/subscriptions");
+      this.actived = !this.actived;
+      flash("Subscribed!");
+    }
+  }
 });
 
 /***/ }),
@@ -62604,7 +62603,7 @@ var render = function() {
   return _vm.signedIn
     ? _c("div", [
         _c("button", {
-          staticClass: "btn",
+          staticClass: "btn btn-rounded",
           class: _vm.classes,
           domProps: { textContent: _vm._s(_vm.sss) },
           on: { click: _vm.subscribe }

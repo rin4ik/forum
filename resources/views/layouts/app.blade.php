@@ -13,7 +13,7 @@
 	<script src="https://use.fontawesome.com/21fa307658.js"></script>
 	<title>Forum</title>
 	<!-- Styles -->
-
+	<link rel="stylesheet" href="{{ asset('css/mdb.min.css') }}">
 	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 	<script>
 		window.App={!!json_encode(['csrfToken'=>csrf_token(),
@@ -27,6 +27,10 @@
 			font-family: 'Encode Sans Expanded', sans-serif;
 			background-color: #fbfbfb;
 			padding-bottom: 100px;
+		}
+
+		.navbar {
+			box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12)
 		}
 
 		[v-cloak] {
