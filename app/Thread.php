@@ -7,7 +7,7 @@ use App\Events\ThreadReceivedNewReply;
 
 class Thread extends Model
 {
-    use RecordsActivity;
+    use RecordsActivity, RecordsVisits;
     protected $guarded = [];
     protected $with = ['creator', 'channel'];
     protected $appends = ['isSubscribedTo'];

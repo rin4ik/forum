@@ -4,12 +4,11 @@
 padding-left: 10px; padding-right:10px; background-color: rgba(49, 52, 53, 0.1);border-radius: 5px; ">
 		<div class="level">
 			<h4 class="flex" style="margin: 6px; padding:4px; padding-left:0">
-
 				<a href="{{ $thread->path() }}">
 					@if(auth()->check() && $thread->hasUpdatesFor(auth()->user()))
-					<p style="font-size:16px; margin: 0; color:rgb(16, 16, 16)">{{ substr($thread->title, 0,150)}}</p>
+					<p style="font-size:17px; margin: 5px; margin-left:5px; color:rgb(16, 16, 16)">{{ substr($thread->title, 0,150)}}</p>
 					@else
-					<p style="font-size:16px;margin: 0; color:rgb(80, 90, 96)"> {{ substr($thread->title, 0,150)}}</p>
+					<p style="font-size:17px;margin: 5px;margin-left:5px; color:rgb(80, 90, 96)"> {{ substr($thread->title, 0,150)}}</p>
 					@endif
 				</a>
 
@@ -23,13 +22,16 @@ padding-left: 10px; padding-right:10px; background-color: rgba(49, 52, 53, 0.1);
 	</div>
 
 	<div class="panel-body">
-		<div class="body" style="padding-left:2px">{{ substr($thread->body,0,298) }}</div>
-		<div class="level" style="padding: 0; background-color: white; float:right; padding-top:10px">
+		<div class="body" style="margin: 5px;padding-left:2px">{{$thread->body }}</div>
+		<div class="level" style="padding: 0;margin: 5px; background-color: white; float:right; padding-top:10px">
 			posted by
 			<a href="/profiles/{{$thread->creator->name}}" style="margin-left:3px;margin-right:3px ">
 				{{ $thread->creator->name}}</a>
 			{{$thread->created_at->diffForHumans()}}
 		</div>
+	</div>
+	<div class="panel-footer" style="background-color:white">
+		{{ $thread->visits()}} Visits
 	</div>
 </div>
 @empty

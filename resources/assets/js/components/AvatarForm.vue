@@ -2,8 +2,8 @@
 <div>
   <div class="level">
 				<img :src="avatar" width="50" height="50" style="margin-right:10px;"> 
-    <h1 v-text="user.name"> 
-    </h1>
+   <strong> <h1 v-text="user.name">
+    </h1> </strong>
   </div>
 				
                            
