@@ -7,7 +7,7 @@ use App\Events\ThreadReceivedNewReply;
 
 class Thread extends Model
 {
-    use RecordsActivity, RecordsVisits;
+    use RecordsActivity;
     protected $guarded = [];
     protected $with = ['creator', 'channel'];
     protected $appends = ['isSubscribedTo'];
@@ -45,6 +45,11 @@ class Thread extends Model
         $reply = $this->replies()->create($reply);
         event(new ThreadReceivedNewReply($reply));
         return $reply;
+    }
+
+    public function visits()
+    {
+        return new Visits($this);
     }
 
     public function hasUpdatesFor($user)
