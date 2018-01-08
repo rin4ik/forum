@@ -47,11 +47,6 @@ class Thread extends Model
         return $reply;
     }
 
-    public function visits()
-    {
-        return new Visits($this);
-    }
-
     public function hasUpdatesFor($user)
     {
         $key = $user->visitedThreadCacheKey($this);

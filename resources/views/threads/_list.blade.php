@@ -31,7 +31,7 @@ padding-left: 10px; padding-right:10px; background-color: rgba(49, 52, 53, 0.1);
 		</div>
 	</div>
 	<div class="panel-footer" style="background-color:white">
-		{{ $thread->visits()->count()}} Visits
+		{{$thread->visits}} Visits
 	</div>
 </div>
 @empty

@@ -87,8 +87,9 @@ class ThreadsController extends Controller
             auth()->user()->read($thread);
         }
         $trending->push($thread);
-        $thread->visits()->record();
-        return view('threads.show', compact('thread'));
+       // $thread->visits()->record();
+       $thread->increment('visits'); 
+       return view('threads.show', compact('thread'));
     }
 
     public function destroy($channel, Thread $thread)
