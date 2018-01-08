@@ -15,10 +15,8 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [
-        'name', 'email', 'password', 'avatar_path'
-    ];
-              
+    protected $guarded = [];
+    protected $casts = ['confirmed' => 'boolean'];
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -41,6 +39,12 @@ class User extends Authenticatable
     public function threads()
     {
         return $this->hasMany(Thread::class)->latest();
+    }
+
+    public function confirm()
+    {
+        $this->confirmed = true;
+        $this->save();
     }
 
     public function visitedThreadCacheKey($thread)

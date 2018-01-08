@@ -6,9 +6,9 @@ padding-left: 10px; padding-right:10px; background-color: rgba(49, 52, 53, 0.1);
 			<h4 class="flex" style="margin: 6px; padding:4px; padding-left:0">
 				<a href="{{ $thread->path() }}">
 					@if(auth()->check() && $thread->hasUpdatesFor(auth()->user()))
-					<p style="font-size:17px; margin: 5px; margin-left:5px; color:rgb(16, 16, 16)">{{ substr($thread->title, 0,150)}}</p>
+					<p style="font-size:17px; margin: 5px; margin-left:5px; color:rgb(16, 16, 16)">{{$thread->title}}</p>
 					@else
-					<p style="font-size:17px;margin: 5px;margin-left:5px; color:rgb(80, 90, 96)"> {{ substr($thread->title, 0,150)}}</p>
+					<p style="font-size:17px;margin: 5px;margin-left:5px; color:rgb(80, 90, 96)">{{$thread->title}}</p>
 					@endif
 				</a>
 
