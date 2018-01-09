@@ -15,6 +15,7 @@
 	<!-- Styles -->
 	<link rel="stylesheet" href="{{ asset('css/mdb.min.css') }}">
 	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
 	<script>
 		window.App={!!json_encode(['csrfToken'=>csrf_token(),
       'user'=>Auth::user(),
