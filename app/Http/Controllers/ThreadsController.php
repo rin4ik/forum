@@ -58,6 +58,7 @@ class ThreadsController extends Controller
      */
     public function store(Request $request)
     {
+     
         request()->validate([
             'title' => 'required|spamfree',
             'body' => 'required|spamfree',
@@ -66,6 +67,7 @@ class ThreadsController extends Controller
 
         $thread = Thread::create([
             'user_id' => auth()->id(),
+            'slug'=>str_slug(request('title')),
             'channel_id' => request('channel_id'),
             'title' => request('title'),
             'body' => request('body')
