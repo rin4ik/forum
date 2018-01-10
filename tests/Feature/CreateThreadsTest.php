@@ -4,7 +4,7 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use App\Activity;
-
+use App\Thread;
 class CreateThreadsTest extends TestCase
 {
     /** @test */
@@ -76,7 +76,18 @@ class CreateThreadsTest extends TestCase
         $this->signIn();
         $this->delete($thread->path())->assertStatus(403);
     }
+/** @test */
+public function a_thread_requires_a_unique_slug()
+{
+    $this->signIn();
 
+    $thread=create('App\Thread',['title'=>'Foo title','slug'=>'foo-title']);
+    $this->assertEquals($thread->fresh()->slug, 'foo-title');
+    $this->post(route('threads'),$thread->toArray());
+    $this->assertTrue(Thread::whereSlug('foo-title-2')->exists());
+    $this->post(route('threads'),$thread->toArray());
+    $this->assertTrue(Thread::whereSlug('foo-title-3')->exists());
+}
     /** @test */
     public function authorized_users_can_delete_threads()
     {

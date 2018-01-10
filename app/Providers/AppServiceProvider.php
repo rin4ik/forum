@@ -15,11 +15,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         \View::composer('*', function ($view) {
-            $channels = \Cache::rememberForever('channels', function () {
-                return Channel::all();
-            });
-
-            $view->with('channels', $channels);
+            $view->with('channels', Channel::all());
         });
         \Validator::extend('spamfree', 'App\Rules\SpamFree@passes');
     }
