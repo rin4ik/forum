@@ -54,7 +54,8 @@
 					</a>
 
 					<ul class="dropdown-menu">
-						@forelse (\App\Channel::all() as $channel) @if(count($channel))
+						@forelse ($channels as $channel) @if(count($channel))
+
 						<li>
 							<a href="/threads/{{ $channel->slug }}">{{ $channel->name }}</a>
 						</li>
