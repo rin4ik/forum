@@ -4,7 +4,7 @@
 padding-left: 10px; padding-right:10px; background-color: rgba(49, 52, 53, 0.1);border-radius: 5px; ">
 		<div class="level">
 			<h4 class="flex" style="margin: 6px; padding:4px; padding-left:0">
-				<a href="{{ $thread->path() }}">
+				<a href="{{ $thread->path() }}" target="blank">
 					@if(auth()->check() && $thread->hasUpdatesFor(auth()->user()))
 					<p style="font-size:17px; margin: 5px; margin-left:5px; color:rgb(16, 16, 16)">{{$thread->title}}</p>
 					@else
@@ -25,7 +25,7 @@ padding-left: 10px; padding-right:10px; background-color: rgba(49, 52, 53, 0.1);
 		<div class="body" style="margin: 5px;padding-left:2px">{{$thread->body }}</div>
 		<div class="level" style="padding: 0;margin: 5px; background-color: white; float:right; padding-top:10px">
 			posted by
-			<a href="/profiles/{{$thread->creator->name}}" style="margin-left:3px;margin-right:3px ">
+			<a href="/profiles/{{$thread->creator->name}}" style="margin-left:3px;margin-right:3px " target="blank">
 				{{ $thread->creator->name}}</a>
 			{{$thread->created_at->diffForHumans()}}
 		</div>

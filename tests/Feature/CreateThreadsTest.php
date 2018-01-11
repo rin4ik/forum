@@ -42,6 +42,7 @@ class CreateThreadsTest extends TestCase
         ->assertSee($thread->body);
     }
 
+
     /** @test */
     public function thread_requires_a_title()
     {
@@ -80,13 +81,20 @@ class CreateThreadsTest extends TestCase
 public function a_thread_requires_a_unique_slug()
 {
     $this->signIn();
-
-    $thread=create('App\Thread',['title'=>'Foo title','slug'=>'foo-title']);
+    create('App\Thread', [] ,2 );
+    $thread=create('App\Thread',['title'=>'Foo title']);
     $this->assertEquals($thread->fresh()->slug, 'foo-title');
-    $this->post(route('threads'),$thread->toArray());
-    $this->assertTrue(Thread::whereSlug('foo-title-2')->exists());
-    $this->post(route('threads'),$thread->toArray());
-    $this->assertTrue(Thread::whereSlug('foo-title-3')->exists());
+    $thread=$this->postJson(route('threads'),$thread->toArray())->json();
+    $this->assertEquals("foo-title-{$thread['id']}", $thread['slug']);
+}
+/** @test */
+public function a_thread_with_a_title_that_ends_in_a_number_should_generate_the_proper_slug()
+{
+    $this->signIn();
+    
+    $thread=create('App\Thread',['title'=>'Foo title 24']);  
+    $thread=$this->postJson(route('threads'),$thread->toArray())->json();
+    $this->assertEquals("foo-title-24-{$thread['id']}", $thread['slug']);    
 }
     /** @test */
     public function authorized_users_can_delete_threads()
