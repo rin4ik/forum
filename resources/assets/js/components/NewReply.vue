@@ -20,50 +20,45 @@
 </template>
 
 
-<script>   
-    import Reply from './Reply.vue';
-    import 'at.js';
-    import 'jquery.caret';
+<script>
+import Reply from "./Reply.vue";
+import "at.js";
+import "jquery.caret";
 export default {
-            data(){
-            return{
-                body:''
-            };
-            },
-            mounted(){
-                $('#body').atwho({
-                    at:"@",
-                    delay:2000,
-                    callbacks:{
-                        remoteFilter:function(query, callback){
-                      console.log('called');
-                            $.getJSON("/api/users", {name:query}, function(usernames){
-                                callback(usernames)
-                            });
-                        }
-                    }
-                });
-            },
-            computed:{
-                signedIn(){
-                    return window.App.signedIn;
-                }
-            },
-            methods:{
-                  addReply() {
-                axios.post(location.pathname + '/replies', { body: this.body })
-                    .catch(error => {
-                        flash(error.response.data, 'danger');
-                    })
-                    .then(({data}) => {
-                        this.body = '';
-                        flash('Your reply has been posted.');
-                        this.$emit('created', data);
-                    });
-            }
-            }
-       }
-
+  data() {
+    return {
+      body: ""
+    };
+  },
+  mounted() {
+    $("#body").atwho({
+      at: "@",
+      delay: 2000,
+      callbacks: {
+        remoteFilter: function(query, callback) {
+          console.log("called");
+          $.getJSON("/api/users", { name: query }, function(usernames) {
+            callback(usernames);
+          });
+        }
+      }
+    });
+  },
+  methods: {
+    addReply() {
+      axios
+        .post(location.pathname + "/replies", { body: this.body })
+        .catch(error => {
+          flash(error.response.data, "danger");
+        })
+        .then(({ data }) => {
+          this.body = "";
+          flash("Your reply has been posted.");
+          this.$emit("created", data);
+        });
+    }
+  }
+};
 </script>
 <style>
 

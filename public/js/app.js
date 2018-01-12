@@ -38898,11 +38898,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 window._ = __webpack_require__(141);
+
 window.Vue = __webpack_require__(5);
-window.Vue.prototype.authorize = function (handler) {
-    var user = window.App.user;
-    return user ? handler(user) : false;
+var authorizations = __webpack_require__(217);
+window.Vue.prototype.authorize = function () {
+    if (!window.App.signedIn) return false;
+
+    for (var _len = arguments.length, params = Array(_len), _key = 0; _key < _len; _key++) {
+        params[_key] = arguments[_key];
+    }
+
+    if (typeof params[0] === 'string') {
+        return authorizations[params[0]](params[1]);
+    }
+    return params[0](window.App.user);
 };
+window.Vue.prototype.signedIn = window.App.signedIn;
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
  * for JavaScript based Bootstrap features such as modals and tabs. This
@@ -59800,7 +59811,7 @@ exports = module.exports = __webpack_require__(3)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -59864,56 +59875,53 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ['data'],
-    components: { Favorite: __WEBPACK_IMPORTED_MODULE_0__Favorite_vue___default.a },
-    data: function data() {
-        return {
-            editing: false,
-            body: this.data.body,
-            id: this.data.id
-        };
-    },
+  props: ["data"],
+  components: { Favorite: __WEBPACK_IMPORTED_MODULE_0__Favorite_vue___default.a },
+  data: function data() {
+    return {
+      editing: false,
+      body: this.data.body,
+      id: this.data.id,
+      isBest: false,
+      reply: this.data
+    };
+  },
 
-    computed: {
-        ago: function ago() {
-            return __WEBPACK_IMPORTED_MODULE_1_moment___default()(this.data.created_at).add(120, 'minutes').from(__WEBPACK_IMPORTED_MODULE_1_moment___default()()) + '...';
-        },
-        signedIn: function signedIn() {
-            return window.App.signedIn;
-        },
-        canUpdate: function canUpdate() {
-            var _this = this;
-
-            return this.authorize(function (user) {
-                return _this.data.user_id === user.id;
-            });
-        }
-    },
-    methods: {
-        update: function update() {
-            var _this2 = this;
-
-            axios.patch('/replies/' + this.data.id, {
-                body: this.body
-            }).catch(function (error) {
-                flash(error.response.data, 'danger');
-            }).then(function (_ref) {
-                var data = _ref.data;
-
-                _this2.editing = false;
-                flash('Updated!!');
-            });
-        },
-        destroy: function destroy() {
-            axios.delete('/replies/' + this.data.id);
-            this.$emit('deleted', this.data.id);
-        }
+  computed: {
+    ago: function ago() {
+      return __WEBPACK_IMPORTED_MODULE_1_moment___default()(this.data.created_at).add(120, "minutes").from(__WEBPACK_IMPORTED_MODULE_1_moment___default()()) + "...";
     }
+  },
+  methods: {
+    update: function update() {
+      var _this = this;
+
+      axios.patch("/replies/" + this.data.id, {
+        body: this.body
+      }).catch(function (error) {
+        flash(error.response.data, "danger");
+      }).then(function (_ref) {
+        var data = _ref.data;
+
+        _this.editing = false;
+        flash("Updated!!");
+      });
+    },
+    destroy: function destroy() {
+      axios.delete("/replies/" + this.data.id);
+      this.$emit("deleted", this.data.id);
+    },
+    markBestReply: function markBestReply() {
+      this.isBest = true;
+    }
+  }
 });
 
 /***/ }),
@@ -60360,7 +60368,11 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "panel panel-default", attrs: { id: "reply-" + _vm.id } },
+    {
+      staticClass: "panel",
+      class: _vm.isBest ? "panel-success" : "panel-default",
+      attrs: { id: "reply-" + _vm.id }
+    },
     [
       _c(
         "div",
@@ -60368,7 +60380,6 @@ var render = function() {
           staticClass: "panel-heading",
           staticStyle: {
             "padding-top": "0px",
-            "background-color": "rgba(49, 52, 53, 0.1)",
             "border-radius": "5px",
             "padding-bottom": "0px"
           }
@@ -60385,7 +60396,7 @@ var render = function() {
               _c("span", { domProps: { textContent: _vm._s(_vm.ago) } })
             ]),
             _vm._v(" "),
-            _vm.canUpdate
+            _vm.authorize("updateReply", _vm.reply)
               ? _c("div", [
                   _c(
                     "button",
@@ -60467,7 +60478,7 @@ var render = function() {
       _vm._v(" "),
       _c("hr", { staticStyle: { margin: "0", width: "15%" } }),
       _vm._v(" "),
-      _vm.canUpdate
+      _vm.authorize("updateReply", _vm.reply)
         ? _c(
             "div",
             {
@@ -60504,11 +60515,29 @@ var render = function() {
       _vm.signedIn
         ? _c(
             "div",
+            { staticClass: "level" },
             [
               _c("favorite", {
                 staticStyle: { "padding-left": "10px" },
                 attrs: { reply: _vm.data }
-              })
+              }),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: !_vm.isBest,
+                      expression: "!isBest"
+                    }
+                  ],
+                  staticClass: "btn btn-xs btn-success ml-a",
+                  on: { click: _vm.markBestReply }
+                },
+                [_vm._v("Best Reply?")]
+              )
             ],
             1
           )
@@ -60613,7 +60642,7 @@ exports = module.exports = __webpack_require__(3)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -60657,46 +60686,41 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            body: ''
-        };
-    },
-    mounted: function mounted() {
-        $('#body').atwho({
-            at: "@",
-            delay: 2000,
-            callbacks: {
-                remoteFilter: function remoteFilter(query, callback) {
-                    console.log('called');
-                    $.getJSON("/api/users", { name: query }, function (usernames) {
-                        callback(usernames);
-                    });
-                }
-            }
-        });
-    },
-
-    computed: {
-        signedIn: function signedIn() {
-            return window.App.signedIn;
+  data: function data() {
+    return {
+      body: ""
+    };
+  },
+  mounted: function mounted() {
+    $("#body").atwho({
+      at: "@",
+      delay: 2000,
+      callbacks: {
+        remoteFilter: function remoteFilter(query, callback) {
+          console.log("called");
+          $.getJSON("/api/users", { name: query }, function (usernames) {
+            callback(usernames);
+          });
         }
-    },
-    methods: {
-        addReply: function addReply() {
-            var _this = this;
+      }
+    });
+  },
 
-            axios.post(location.pathname + '/replies', { body: this.body }).catch(function (error) {
-                flash(error.response.data, 'danger');
-            }).then(function (_ref) {
-                var data = _ref.data;
+  methods: {
+    addReply: function addReply() {
+      var _this = this;
 
-                _this.body = '';
-                flash('Your reply has been posted.');
-                _this.$emit('created', data);
-            });
-        }
+      axios.post(location.pathname + "/replies", { body: this.body }).catch(function (error) {
+        flash(error.response.data, "danger");
+      }).then(function (_ref) {
+        var data = _ref.data;
+
+        _this.body = "";
+        flash("Your reply has been posted.");
+        _this.$emit("created", data);
+      });
     }
+  }
 });
 
 /***/ }),
@@ -63252,6 +63276,25 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 209 */,
+/* 210 */,
+/* 211 */,
+/* 212 */,
+/* 213 */,
+/* 214 */,
+/* 215 */,
+/* 216 */,
+/* 217 */
+/***/ (function(module, exports) {
+
+var user = window.App.user;
+module.exports = {
+    updateReply: function updateReply(reply) {
+        return reply.user_id === user.id;
+    }
+};
 
 /***/ })
 /******/ ]);

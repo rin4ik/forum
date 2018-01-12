@@ -1,16 +1,22 @@
 import Vue from 'vue'
 
 window._ = require('lodash');
+
 window.Vue = require('vue');
-window.Vue.prototype.authorize = function(handler) {
-        let user = window.App.user;
-        return user ? handler(user) : false;
+let authorizations = require('./authorizations');
+window.Vue.prototype.authorize = function(...params) {
+    if (!window.App.signedIn) return false;
+    if (typeof params[0] === 'string') {
+        return authorizations[params[0]](params[1]);
     }
-    /**
-     * We'll load jQuery and the Bootstrap jQuery plugin which provides support
-     * for JavaScript based Bootstrap features such as modals and tabs. This
-     * code may be modified to fit the specific needs of your application.
-     */
+    return params[0](window.App.user);
+}
+window.Vue.prototype.signedIn = window.App.signedIn;
+/**
+ * We'll load jQuery and the Bootstrap jQuery plugin which provides support
+ * for JavaScript based Bootstrap features such as modals and tabs. This
+ * code may be modified to fit the specific needs of your application.
+ */
 
 try {
     window.$ = window.jQuery = require('jquery');

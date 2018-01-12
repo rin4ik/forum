@@ -24,6 +24,11 @@
 	</script>
 	@yield('header')
 	<style>
+		.ml-a {
+			margin-left: auto;
+			margin-right: 7px
+		}
+
 		body {
 			font-family: 'Encode Sans Expanded', sans-serif;
 			background-color: #fbfbfb;

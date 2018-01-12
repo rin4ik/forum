@@ -43,10 +43,9 @@ $factory->define(App\Thread::class, function ($faker) {
         'user_id' => function () {
             return factory('App\User')->create()->id;
         },
-        'slug' => str_slug($title),
-        'channel_id' => function () {
-            return factory('App\Channel')->create()->id;
-        },
+            'channel_id' => function () {
+                return factory('App\Channel')->create()->id;
+            },
 
         'title' => $title,
         'body' => $faker->paragraph,
