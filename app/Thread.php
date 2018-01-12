@@ -38,7 +38,7 @@ class Thread extends Model
         $slug=str_slug($value);
 
         if(static::whereSlug($slug)->exists()){
-            $slug="{$slug}-" .$this->id; 
+           $slug="{$slug}-" .$this->id; 
         }
        
         $this->attributes['slug'] = $slug;
@@ -103,5 +103,9 @@ class Thread extends Model
         return $this->subscriptions()
         ->where('user_id', auth()->id())
         ->exists();
+    }
+    public function markBestReply($reply)
+    {
+       $this->update(['best_reply_id' => $reply->id]);
     }
 }

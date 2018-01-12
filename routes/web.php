@@ -22,6 +22,7 @@ Route::get('/threads/create', 'ThreadsController@create');
 
 Route::get('threads/{channel}/{thread}/replies', 'RepliesController@index');
 Route::post('threads/{channel}/{thread}/replies', 'RepliesController@store');
+Route::post('/replies/{reply}/best', 'BestRepliesController@store')->name('best-replies.store');
 Route::post('/threads', 'ThreadsController@store')->middleware('must-be-confirmed');
 Route::get('/threads/{channel?}', 'ThreadsController@index')->name('threads');
 Route::patch('/replies/{reply}', 'RepliesController@update');

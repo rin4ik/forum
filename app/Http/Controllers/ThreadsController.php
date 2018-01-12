@@ -70,6 +70,7 @@ class ThreadsController extends Controller
             'channel_id' => request('channel_id'),
             'title' => request('title'),
             'body' => request('body')
+
         ]);
         if(request()->wantsJson()){
             return response($thread, 201);

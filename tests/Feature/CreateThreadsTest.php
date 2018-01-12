@@ -121,9 +121,9 @@ public function a_thread_with_a_title_that_ends_in_a_number_should_generate_the_
      ]
         );
         $this->assertDatabaseMissing(
-            'activities',
+         'activities',
          ['subject_id' => $favorite->id,
-          'subject_type' => get_class($favorite)
+         'subject_type' => get_class($favorite)
      ]
         );
         $this->assertEquals(0, Activity::count());
