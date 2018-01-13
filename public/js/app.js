@@ -59811,7 +59811,7 @@ exports = module.exports = __webpack_require__(3)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -59879,6 +59879,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -59892,13 +59894,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       body: this.data.body,
       id: this.data.id,
       isBest: this.data.isBest,
-      reply: this.data
+      reply: this.data,
+      creator: this.data.thread.creator
     };
   },
 
   computed: {
     ago: function ago() {
       return __WEBPACK_IMPORTED_MODULE_1_moment___default()(this.data.created_at).add(120, "minutes").from(__WEBPACK_IMPORTED_MODULE_1_moment___default()()) + "...";
+    },
+    threadCreator: function threadCreator() {
+      return this.creator.id === window.App.user.id;
     }
   },
   created: function created() {
@@ -59908,6 +59914,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       _this.isBest = id === _this.id;
     });
   },
+
 
   methods: {
     update: function update() {
@@ -60022,7 +60029,7 @@ exports = module.exports = __webpack_require__(3)(undefined);
 
 
 // module
-exports.push([module.i, "\n.alert-flash {\n  position: fixed;\n  right: 25px;\n  bottom: 25px;\n}\n.ol {\n  color: #c21f1f;\n}\n.om {\n  color: #c85f5f;\n}\n", ""]);
+exports.push([module.i, "\n.alert-flash {\n  position: fixed;\n  right: 25px;\n  bottom: 25px;\n}\n.ol {\n  color: #c21f1f;\n}\n.om {\n  color: #b93e3e;\n}\n", ""]);
 
 // exports
 
@@ -60083,7 +60090,8 @@ var render = function() {
   return _c(
     "button",
     {
-      staticClass: "btn btn-link ",
+      staticClass: "btn btn-link",
+      class: _vm.signedIn ? "" : "disabled",
       staticStyle: { "padding-left": "0px", "text-decoration": "none" },
       attrs: { type: "submit" },
       on: { click: _vm.toggle }
@@ -60523,59 +60531,64 @@ var render = function() {
           )
         : _vm._e(),
       _vm._v(" "),
-      _vm.signedIn
-        ? _c(
-            "div",
-            { staticClass: "level" },
+      _c(
+        "div",
+        { staticClass: "level" },
+        [
+          _c("favorite", {
+            staticStyle: { "padding-left": "10px" },
+            attrs: { reply: _vm.data }
+          }),
+          _vm._v(" "),
+          _vm.signedIn
+            ? _c("p", { staticClass: "ml-a" }, [
+                _vm.threadCreator
+                  ? _c(
+                      "button",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: !_vm.isBest,
+                            expression: "!isBest"
+                          }
+                        ],
+                        staticClass: "btn btn-xs btn-default",
+                        on: { click: _vm.markBestReply }
+                      },
+                      [_vm._v("Best Reply?")]
+                    )
+                  : _vm._e()
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _c(
+            "p",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.isBest,
+                  expression: "isBest"
+                }
+              ],
+              staticClass: "ml-a",
+              staticStyle: { color: "#3c763d" },
+              on: { click: _vm.markBestReply }
+            },
             [
-              _c("favorite", {
-                staticStyle: { "padding-left": "10px" },
-                attrs: { reply: _vm.data }
-              }),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: !_vm.isBest,
-                      expression: "!isBest"
-                    }
-                  ],
-                  staticClass: "btn btn-xs btn-default ml-a",
-                  on: { click: _vm.markBestReply }
-                },
-                [_vm._v("Best Reply?")]
-              ),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: _vm.isBest,
-                      expression: "isBest"
-                    }
-                  ],
-                  staticClass: "btn btn-xs btn-success ml-a",
-                  on: { click: _vm.markBestReply }
-                },
-                [
-                  _vm._v("Best "),
-                  _c("i", {
-                    staticClass: "fa fa-check-square-o",
-                    attrs: { "aria-hidden": "true" }
-                  })
-                ]
-              )
-            ],
-            1
+              _vm._v("Best "),
+              _c("i", {
+                staticClass: "fa fa-check-square-o",
+                attrs: { "aria-hidden": "true" }
+              })
+            ]
           )
-        : _vm._e()
+        ],
+        1
+      )
     ]
   )
 }

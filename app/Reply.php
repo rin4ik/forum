@@ -20,6 +20,10 @@ class Reply extends Model
             $reply->thread->increment('replies_count');
         });
         static::deleted(function ($reply) {
+            // if ($reply->isBest()) {
+            //     $reply->thread->update(['best_reply_id' => null]);
+            // }
+
             $reply->thread->decrement('replies_count');
         });
     }

@@ -1,5 +1,5 @@
 <template>
- <button type="submit" @click='toggle' class="btn btn-link " style="padding-left:0px; text-decoration:none;">
+ <button type="submit"  @click='toggle' class="btn btn-link" :class="signedIn?'':'disabled'" style="padding-left:0px; text-decoration:none;" >
       <span v-text="count"> </span> <i class="fa" :class="classes" aria-hidden="true" ></i></button>
 </template>
 
@@ -45,6 +45,6 @@ export default {
   color: #c21f1f;
 }
 .om {
-  color: #c85f5f;
+  color: #b93e3e;
 }
 </style>

@@ -37,15 +37,17 @@
                         
                         <button class="btn btn-link " @click="editing = true">
                                 <i class="fa fa-pencil-square-o" style="color:rgb(37, 87, 188)" aria-hidden="true"></i> Edit</button>
-                         </div>       
+                         </div>  
+                         
+                         <div class='level'>
+                                 <favorite :reply="data" style="padding-left:10px;"></favorite> 
+                                
+                                 <p v-if="signedIn" class="ml-a"><button class="btn btn-xs btn-default" v-if="threadCreator" @click="markBestReply" v-show="!isBest">Best Reply?</button></p>
+                                 <p class="ml-a" @click="markBestReply" v-show="isBest" style="color:#3c763d">Best <i class="fa fa-check-square-o" aria-hidden="true"></i></p>
+                                   
+                        </div>     
+           
                         
-                        <div v-if="signedIn" class="level">
-                        <favorite :reply="data" style="padding-left:10px;"></favorite> 
-     
-                        <button class="btn btn-xs btn-default ml-a" @click="markBestReply" v-show="!isBest">Best Reply?</button>
-
-                        <button class="btn btn-xs btn-success ml-a" @click="markBestReply" v-show="isBest">Best <i class="fa fa-check-square-o" aria-hidden="true"></i></button>
-                        </div> 
                        
 </div>
 
@@ -64,7 +66,8 @@ export default {
       body: this.data.body,
       id: this.data.id,
       isBest: this.data.isBest,
-      reply: this.data
+      reply: this.data,
+      creator: this.data.thread.creator
     };
   },
   computed: {
@@ -74,6 +77,9 @@ export default {
           .add(120, "minutes")
           .from(moment()) + "..."
       );
+    },
+    threadCreator() {
+      return this.creator.id === window.App.user.id;
     }
   },
   created() {
@@ -81,6 +87,7 @@ export default {
       this.isBest = id === this.id;
     });
   },
+
   methods: {
     update() {
       axios
