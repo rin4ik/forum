@@ -59705,7 +59705,7 @@ exports = module.exports = __webpack_require__(3)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -59743,37 +59743,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    components: { Reply: __WEBPACK_IMPORTED_MODULE_0__Reply_vue___default.a, NewReply: __WEBPACK_IMPORTED_MODULE_1__NewReply_vue___default.a },
-    mixins: [__WEBPACK_IMPORTED_MODULE_2__mixins_collection__["a" /* default */]],
-    data: function data() {
-        return {
-            dataSet: false
-        };
-    },
-    created: function created() {
-        this.fetch();
-    },
+  components: { Reply: __WEBPACK_IMPORTED_MODULE_0__Reply_vue___default.a, NewReply: __WEBPACK_IMPORTED_MODULE_1__NewReply_vue___default.a },
+  mixins: [__WEBPACK_IMPORTED_MODULE_2__mixins_collection__["a" /* default */]],
+  data: function data() {
+    return {
+      dataSet: false
+    };
+  },
+  created: function created() {
+    this.fetch();
+  },
 
-    methods: {
-        fetch: function fetch(page) {
-            axios.get(this.url(page)).then(this.refresh);
-        },
-        url: function url(page) {
-            if (!page) {
-                var query = location.search.match(/page=(\d+)/);
-                page = query ? query[1] : 1;
-            }
-            return location.pathname + '/replies?page=' + page;
-        },
-        refresh: function refresh(_ref) {
-            var data = _ref.data;
+  methods: {
+    fetch: function fetch(page) {
+      axios.get(this.url(page)).then(this.refresh);
+    },
+    url: function url(page) {
+      if (!page) {
+        var query = location.search.match(/page=(\d+)/);
+        page = query ? query[1] : 1;
+      }
+      return location.pathname + "/replies?page=" + page;
+    },
+    refresh: function refresh(_ref) {
+      var data = _ref.data;
 
-            this.dataSet = data;
-            this.items = data.data;
-            window.scrollTo(0, 0);
-        }
+      this.dataSet = data;
+      this.items = data.data;
+      window.scrollTo(0, 0);
     }
-
+  }
 });
 
 /***/ }),
@@ -59811,7 +59810,7 @@ exports = module.exports = __webpack_require__(3)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -59886,25 +59885,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["data"],
+  props: ["reply"],
   components: { Favorite: __WEBPACK_IMPORTED_MODULE_0__Favorite_vue___default.a },
   data: function data() {
     return {
       editing: false,
-      body: this.data.body,
-      id: this.data.id,
-      isBest: this.data.isBest,
-      reply: this.data,
-      creator: this.data.thread.creator
+      body: this.reply.body,
+      id: this.reply.id,
+      isBest: this.reply.isBest
     };
   },
 
   computed: {
     ago: function ago() {
-      return __WEBPACK_IMPORTED_MODULE_1_moment___default()(this.data.created_at).add(120, "minutes").from(__WEBPACK_IMPORTED_MODULE_1_moment___default()()) + "...";
-    },
-    threadCreator: function threadCreator() {
-      return this.creator.id === window.App.user.id;
+      return __WEBPACK_IMPORTED_MODULE_1_moment___default()(this.reply.created_at).add(120, "minutes").from(__WEBPACK_IMPORTED_MODULE_1_moment___default()()) + "...";
     }
   },
   created: function created() {
@@ -59920,7 +59914,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     update: function update() {
       var _this2 = this;
 
-      axios.patch("/replies/" + this.data.id, {
+      axios.patch("/replies/" + this.id, {
         body: this.body
       }).catch(function (error) {
         flash(error.response.data, "danger");
@@ -59932,12 +59926,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
     },
     destroy: function destroy() {
-      axios.delete("/replies/" + this.data.id);
-      this.$emit("deleted", this.data.id);
+      axios.delete("/replies/" + this.id);
+      this.$emit("deleted", this.id);
     },
     markBestReply: function markBestReply() {
-      axios.post("/replies/" + this.data.id + "/best");
-      window.events.$emit("best-reply-selected", this.data.id);
+      axios.post("/replies/" + this.reply.id + "/best");
+      window.events.$emit("best-reply-selected", this.id);
     }
   }
 });
@@ -60408,14 +60402,14 @@ var render = function() {
             _c("h5", { staticClass: "flex" }, [
               _c("a", {
                 staticStyle: { "font-size": "16px" },
-                attrs: { href: "/profiles/" + _vm.data.owner.name },
-                domProps: { textContent: _vm._s(_vm.data.owner.name) }
+                attrs: { href: "/profiles/" + _vm.reply.owner.name },
+                domProps: { textContent: _vm._s(_vm.reply.owner.name) }
               }),
               _vm._v(" said "),
               _c("span", { domProps: { textContent: _vm._s(_vm.ago) } })
             ]),
             _vm._v(" "),
-            _vm.authorize("updateReply", _vm.reply)
+            _vm.authorize("owns", _vm.reply)
               ? _c("div", [
                   _c(
                     "button",
@@ -60497,7 +60491,7 @@ var render = function() {
       _vm._v(" "),
       _c("hr", { staticStyle: { margin: "0", width: "15%" } }),
       _vm._v(" "),
-      _vm.authorize("updateReply", _vm.reply)
+      _vm.authorize("owns", _vm.reply)
         ? _c(
             "div",
             {
@@ -60537,12 +60531,12 @@ var render = function() {
         [
           _c("favorite", {
             staticStyle: { "padding-left": "10px" },
-            attrs: { reply: _vm.data }
+            attrs: { reply: _vm.reply }
           }),
           _vm._v(" "),
           _vm.signedIn
             ? _c("p", { staticClass: "ml-a" }, [
-                _vm.threadCreator
+                _vm.authorize("owns", _vm.reply.thread)
                   ? _c(
                       "button",
                       {
@@ -62538,7 +62532,7 @@ var render = function() {
           { key: reply.id },
           [
             _c("reply", {
-              attrs: { data: reply },
+              attrs: { reply: reply },
               on: {
                 deleted: function($event) {
                   _vm.remove(index)
@@ -63338,8 +63332,16 @@ if (false) {
 
 var user = window.App.user;
 module.exports = {
-    updateReply: function updateReply(reply) {
-        return reply.user_id === user.id;
+    // updateReply(reply) {
+    //     return reply.user_id === user.id;
+    // },
+    // updateThread(thread) {
+    //     return thread.user_id === user.id;
+    // },
+    owns: function owns(model) {
+        var prop = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'user_id';
+
+        return model[prop] === user.id;
     }
 };
 

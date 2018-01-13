@@ -5,10 +5,10 @@
 
                         <div class="level">
                                 <h5 class="flex">
-                                        <a :href="'/profiles/'+data.owner.name" v-text="data.owner.name"style=" font-size: 16px;">
+                                        <a :href="'/profiles/'+reply.owner.name" v-text="reply.owner.name"style=" font-size: 16px;">
                                         </a> said <span v-text="ago"></span>
                                 </h5>
-                                <div v-if="authorize('updateReply',reply)">                       
+                                <div v-if="authorize('owns',reply)">                       
                         <button type="submit" class="btn btn-link" style="font-weight: 700; width:30px;margin-top: -45px;
                  margin-right: -17.5px; height:20px;" @click="destroy">
                                         <i class="fa fa-window-close" style="color:rgba(24, 24, 26, 0.77)" aria-hidden="true"></i>
@@ -33,16 +33,16 @@
                 </div>
 <hr style="margin:0; width:15%">
                      
-                      <div v-if="authorize('updateReply',reply)" style="padding: 0; background-color: white; float:left">
+                      <div v-if="authorize('owns',reply)" style="padding: 0; background-color: white; float:left">
                         
                         <button class="btn btn-link " @click="editing = true">
                                 <i class="fa fa-pencil-square-o" style="color:rgb(37, 87, 188)" aria-hidden="true"></i> Edit</button>
                          </div>  
                          
                          <div class='level'>
-                                 <favorite :reply="data" style="padding-left:10px;"></favorite> 
+                                 <favorite :reply="reply" style="padding-left:10px;"></favorite> 
                                 
-                                 <p v-if="signedIn" class="ml-a"><button class="btn btn-xs btn-default" v-if="threadCreator" @click="markBestReply" v-show="!isBest">Best Reply?</button></p>
+                                 <p v-if="signedIn" class="ml-a"><button class="btn btn-xs btn-default" v-if="authorize('owns',reply.thread)" @click="markBestReply" v-show="!isBest">Best Reply?</button></p>
                                  <p class="ml-a" @click="markBestReply" v-show="isBest" style="color:#3c763d">Best <i class="fa fa-check-square-o" aria-hidden="true"></i></p>
                                    
                         </div>     
@@ -58,28 +58,23 @@ import Favorite from "./Favorite.vue";
 import moment from "moment";
 
 export default {
-  props: ["data"],
+  props: ["reply"],
   components: { Favorite },
   data() {
     return {
       editing: false,
-      body: this.data.body,
-      id: this.data.id,
-      isBest: this.data.isBest,
-      reply: this.data,
-      creator: this.data.thread.creator
+      body: this.reply.body,
+      id: this.reply.id,
+      isBest: this.reply.isBest
     };
   },
   computed: {
     ago() {
       return (
-        moment(this.data.created_at)
+        moment(this.reply.created_at)
           .add(120, "minutes")
           .from(moment()) + "..."
       );
-    },
-    threadCreator() {
-      return this.creator.id === window.App.user.id;
     }
   },
   created() {
@@ -91,7 +86,7 @@ export default {
   methods: {
     update() {
       axios
-        .patch("/replies/" + this.data.id, {
+        .patch("/replies/" + this.id, {
           body: this.body
         })
         .catch(error => {
@@ -103,12 +98,12 @@ export default {
         });
     },
     destroy() {
-      axios.delete("/replies/" + this.data.id);
-      this.$emit("deleted", this.data.id);
+      axios.delete("/replies/" + this.id);
+      this.$emit("deleted", this.id);
     },
     markBestReply() {
-      axios.post("/replies/" + this.data.id + "/best");
-      window.events.$emit("best-reply-selected", this.data.id);
+      axios.post("/replies/" + this.reply.id + "/best");
+      window.events.$emit("best-reply-selected", this.id);
     }
   }
 };
