@@ -25,7 +25,7 @@ padding-left: 10px; padding-right:10px; background-color: rgba(49, 52, 53, 0.1);
 		<div class="body" style="margin: 5px;padding-left:2px">{{$thread->body }}</div>
 		<div class="level" style="padding: 0;margin: 5px; background-color: white; float:right; padding-top:10px">
 			posted by
-			<a href="/profiles/{{$thread->creator->name}}" style="margin-left:3px;margin-right:3px " target="blank">
+			<a href="/profiles/{{$thread->creator->name}}" style="margin-left:3px;margin-right:3px ">
 				{{ $thread->creator->name}}</a>
 			{{$thread->created_at->diffForHumans()}}
 		</div>

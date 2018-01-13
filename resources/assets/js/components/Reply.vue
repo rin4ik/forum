@@ -42,7 +42,9 @@
                         <div v-if="signedIn" class="level">
                         <favorite :reply="data" style="padding-left:10px;"></favorite> 
      
-                        <button class="btn btn-xs btn-success ml-a" @click="markBestReply" v-show="!isBest">Best Reply?</button>
+                        <button class="btn btn-xs btn-default ml-a" @click="markBestReply" v-show="!isBest">Best Reply?</button>
+
+                        <button class="btn btn-xs btn-success ml-a" @click="markBestReply" v-show="isBest">Best <i class="fa fa-check-square-o" aria-hidden="true"></i></button>
                         </div> 
                        
 </div>
@@ -61,7 +63,7 @@ export default {
       editing: false,
       body: this.data.body,
       id: this.data.id,
-      isBest: false,
+      isBest: this.data.isBest,
       reply: this.data
     };
   },
@@ -73,6 +75,11 @@ export default {
           .from(moment()) + "..."
       );
     }
+  },
+  created() {
+    window.events.$on("best-reply-selected", id => {
+      this.isBest = id === this.id;
+    });
   },
   methods: {
     update() {
@@ -93,7 +100,8 @@ export default {
       this.$emit("deleted", this.data.id);
     },
     markBestReply() {
-      this.isBest = true;
+      axios.post("/replies/" + this.data.id + "/best");
+      window.events.$emit("best-reply-selected", this.data.id);
     }
   }
 };
