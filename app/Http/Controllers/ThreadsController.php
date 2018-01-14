@@ -49,6 +49,11 @@ class ThreadsController extends Controller
     {
         return view('threads.create');
     }
+    
+    public function update($channel, Thread $thread)
+    {
+        
+    }
 
     /**
      * Store a newly created resource in storage.

@@ -77,7 +77,10 @@ class Thread extends Model
     {
         return $filters->apply($query);
     }
-
+    public function lock()
+    {
+        $this->update(['locked'=>true]);
+    }
     public function subscribe($userId = null)
     {
         $this->subscriptions()->create([

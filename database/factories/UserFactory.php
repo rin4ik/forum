@@ -29,6 +29,11 @@ $factory->state(App\User::class, 'unconfirmed', function () {
         'confirmed' => false
     ];
 });
+$factory->state(App\User::class, 'administrator', function () {
+    return[
+        'name' => 'Mirahmad'
+    ];
+});
 $factory->define(App\Channel::class, function ($faker) {
     $name = $faker->unique()->word;
 
@@ -50,7 +55,9 @@ $factory->define(App\Thread::class, function ($faker) {
         'title' => $title,
         'body' => $faker->paragraph,
 
-        'visits' => 0
+        'visits' => 0,
+        'slug'=>str_slug($title),
+        'locked'=>false
     ];
 });
 
