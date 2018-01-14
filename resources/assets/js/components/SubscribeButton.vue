@@ -1,8 +1,9 @@
 <template>
-<div v-if="signedIn">  <button class="btn btn-rounded" :class="classes" @click="subscribe" v-text="sss">
+
+  <button class="btn btn-rounded" :class="classes" @click="subscribe" v-text="sss">
                       
   </button>
-</div>
+
 
 </template>
 <script>

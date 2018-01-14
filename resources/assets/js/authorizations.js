@@ -8,5 +8,8 @@ module.exports = {
     // },
     owns(model, prop = 'user_id') {
         return model[prop] === user.id
+    },
+    isAdmin() {
+        return ['Mirahmad', 'JohnDoe'].includes(user.name);
     }
 }

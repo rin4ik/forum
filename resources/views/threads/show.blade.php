@@ -1,6 +1,6 @@
 @extends('layouts.app') @section('header')
 <link rel="stylesheet" href="/css/vendor/jquery.atwho.css"> @endsection @section('content')
-<thread-view :initial-replies-count="{{ $thread->replies_count }}" inline-template>
+<thread-view :thread="{{$thread}}" inline-template>
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8">
@@ -44,7 +44,9 @@
 						</p>
 
 						<p>
-							<subscribe-button :active="{{ json_encode($thread->isSubscribedTo) }}"></subscribe-button>
+							<subscribe-button v-if="signedIn" :active="{{ json_encode($thread->isSubscribedTo) }}"></subscribe-button>
+							<button v-if="authorize('isAdmin')" class="btn btn-default" @click="toggleLock" v-text="locked? 'Unlock'   : 'Lock'"></button>
+
 						</p>
 					</div>
 				</div>
