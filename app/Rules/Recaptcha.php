@@ -2,10 +2,10 @@
 
 namespace App\Rules;
 
+use Zttp\Zttp;
 use Illuminate\Contracts\Validation\Rule;
-use App\Inspections\Spam;
 
-class SpamFree implements Rule
+class Recaptcha implements Rule
 {
     /**
      * Create a new rule instance.
@@ -26,11 +26,11 @@ class SpamFree implements Rule
      */
     public function passes($attribute, $value)
     {
-        try {
-            return !resolve(Spam::class)->detect($value);
-        } catch (\Exception $e) {
-            return false;
-        }
+        return Zttp::asFormParams()->post('https://www.google.com/recaptcha/api/siteverify', [
+                      'secret' => config('services.recaptcha.secret'),
+                      'response' => $value,
+                    'remoteip' => request()->ip()
+                   ])->json()['success'];
     }
 
     /**
@@ -40,6 +40,6 @@ class SpamFree implements Rule
      */
     public function message()
     {
-        return 'The validation error message';
+        return 'The recaptcha verification failed.Try again!';
     }
 }

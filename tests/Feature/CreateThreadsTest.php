@@ -1,12 +1,24 @@
 <?php
 
 namespace Tests\Feature;
-
+use App\Rules\Recaptcha;
 use Tests\TestCase;
 use App\Activity;
 use App\Thread;
+use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 class CreateThreadsTest extends TestCase
 {
+    use MockeryPHPUnitIntegration;
+    public function setUp()
+        {
+            parent::setUp();
+    
+            app()->singleton(Recaptcha::class, function () {
+                return \Mockery::mock(Recaptcha::class, function ($m) {
+                    $m->shouldReceive('passes')->andReturn(true);
+                });
+            });
+        }
     /** @test */
     public function unanthenticated_users_may_not_add_threads()
     {
@@ -36,13 +48,20 @@ class CreateThreadsTest extends TestCase
         $this->signIn();
 
         $thread = make('App\Thread');
-        $response = $this->post(route('threads'), $thread->toArray());
+        $response = $this->post(route('threads'), $thread->toArray()+ ['g-recaptcha-response' => 'token']);
         $this->get($response->headers->get('Location'))
         ->assertSee($thread->title)
         ->assertSee($thread->body);
     }
 
-
+ /** @test */
+    function a_thread_requires_recaptcha_verification()
+     {
+         unset(app()[Recaptcha::class]);
+ 
+        $this->publishThread(['g-recaptcha-response' => 'test'])
+             ->assertSessionHasErrors('g-recaptcha-response');
+    }
     /** @test */
     public function thread_requires_a_title()
     {
@@ -84,7 +103,7 @@ public function a_thread_requires_a_unique_slug()
     create('App\Thread', [] ,2 );
     $thread=create('App\Thread',['title'=>'Foo title']);
     $this->assertEquals($thread->fresh()->slug, 'foo-title');
-    $thread=$this->postJson(route('threads'),$thread->toArray())->json();
+    $thread=$this->postJson(route('threads'),$thread->toArray()+ ['g-recaptcha-response' => 'token'])->json();
     $this->assertEquals("foo-title-{$thread['id']}", $thread['slug']);
 }
 /** @test */
@@ -93,7 +112,7 @@ public function a_thread_with_a_title_that_ends_in_a_number_should_generate_the_
     $this->signIn();
     
     $thread=create('App\Thread',['title'=>'Foo title 24']);  
-    $thread=$this->postJson(route('threads'),$thread->toArray())->json();
+    $thread=$this->postJson(route('threads'),$thread->toArray()+ ['g-recaptcha-response' => 'token'])->json();
     $this->assertEquals("foo-title-24-{$thread['id']}", $thread['slug']);    
 }
     /** @test */
@@ -134,7 +153,7 @@ public function a_thread_with_a_title_that_ends_in_a_number_should_generate_the_
         $this->withExceptionHandling()->signIn();
         $thread = make('App\Thread', $overrides);
 
-        return $this->post(route('threads'), $thread->toArray());
+        return $this->post(route('threads'), $thread->toArray()+ ['g-recaptcha-response' => 'token']);
         // ->assertSessionHasErrors('title');
     }
 }

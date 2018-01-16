@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-static-top" style="background-color:hsl(0, 0%, 96%); border-bottom: 1px double  rgb(176, 180, 183); border-radius:4px; ">
+<nav class="navbar navbar-expand-lg navbar-dark teal deep-purple grey darken-1">
 
 	<div class="container">
 		<div class="navbar-header">
@@ -12,7 +12,7 @@
 			</button>
 
 			<!-- Branding Image -->
-			<a class="navbar-brand" href="{{ url('/') }}" style="font-weight:600; color:#ea2742; font-size:14px">
+			<a class="navbar-brand" href="{{ url('/') }}" style="color:white;font-weight:700; font-size:15px">
 				{{ config('app.name') }}
 			</a>
 		</div>
@@ -21,15 +21,15 @@
 			<!-- Left Side Of Navbar -->
 			<ul class="nav navbar-nav">
 
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+				<li class="nav-item dropdown">
+					<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
 						Browse
 						<span class="caret"></span>
 					</a>
 
-					<ul class="dropdown-menu">
+					<ul class="dropdown-menu ">
 						<li>
-							<a href="/threads">All Threads</a>
+							<a class="dropdown-item" href="/threads">All Threads</a>
 						</li>
 						@auth
 						<li>
@@ -44,11 +44,11 @@
 						</li>
 					</ul>
 				</li>
-				<li>
-					<a href="/threads/create">New Thread</a>
+				<li class="nav-item">
+					<a class="nav-link" href="/threads/create">New Thread</a>
 				</li>
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+				<li class="nav-item">
+					<a class="nav-link" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
 						Channels
 						<span class="caret"></span>
 					</a>
@@ -56,8 +56,8 @@
 					<ul class="dropdown-menu">
 						@forelse ($channels as $channel) @if(count($channel))
 
-						<li>
-							<a href="/threads/{{ $channel->slug }}">{{ $channel->name }}</a>
+						<li class="nav-item">
+							<a class="nav-link" href="/threads/{{ $channel->slug }}">{{ $channel->name }}</a>
 						</li>
 						@endif @empty
 						<li style="padding-left:7px">No relevant results!</li>
@@ -70,25 +70,25 @@
 			<ul class="nav navbar-nav navbar-right">
 				<!-- Authentication Links -->
 				@guest
-				<li>
-					<a href="{{ route('login') }}">Login</a>
-				</li>
-				<li>
-					<a href="{{ route('register') }}">Register</a>
+				<li class="nav-item">
+					<a class="nav-link" href="{{ route('login') }}">Login</a>
+				</li class="nav-item">
+				<li class="nav-item">
+					<a class="nav-link" href="{{ route('register') }}">Register</a>
 				</li>
 				@else
 				<user-notifications></user-notifications>
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+				<li class="nav-item">
+					<a href="#" class="nav-link" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
 						{{ Auth::user()->name }}
 						<span class="caret"></span>
 					</a>
 
 					<ul class="dropdown-menu">
-						<li>
+						<li class="nav-item">
 							<a href="/profiles/{{ Auth::user()->name }}">My Profile</a>
 						</li>
-						<li>
+						<li class="nav-item">
 							<a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
 								Logout

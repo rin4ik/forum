@@ -15,7 +15,7 @@ padding-left: 10px; padding-right:10px; background-color: rgba(49, 52, 53, 0.1);
 			</h4>
 			<a href="{{ $thread->path() }}" style="
                 font-size: 15px;color:rgb(50, 50, 50)">
-				{{ $thread->replies_count }} {{ str_plural('reply', $thread->replies_count) }}
+				<span class="badge badge-primary">{{ $thread->replies_count }} {{ str_plural('reply', $thread->replies_count) }}</span>
 			</a>
 		</div>
 

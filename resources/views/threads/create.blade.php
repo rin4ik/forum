@@ -1,4 +1,6 @@
-@extends('layouts.app') @section('content')
+@extends('layouts.app') @section('content') @section ('header')
+<script src='https://www.google.com/recaptcha/api.js'></script>
+@endsection
 <div class="container">
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
@@ -13,7 +15,7 @@
 
 						<div class="form-group">
 							<label for="channel_id"> Choose a channel:</label>
-							<select name="channel_id" id="channel_id" class="form-control" required>
+							<select name="channel_id" id="channel_id" class="form-control mdb-select colorful-select dropdown-primary" required>
 								<option value="">choose one...</option>
 								@foreach(\App\Channel::all() as $channel)
 								<option value="{{$channel->id}}" {{old( 'channel_id')==$channel->id ? 'selected' : ''}}>{{$channel->name}}</option>
@@ -35,6 +37,10 @@
 							<div class="form-group{{ $errors->has('body') ? ' has-error' : '' }}">
 								<p class="text-danger">{{ $errors->first('body') }}</p>
 							</div>
+						</div>
+						<div class="g-recaptcha" data-sitekey="6Lez7UAUAAAAAKp4qnOA1I6VSK46bn9gQUtJ3aPy"></div>
+						<div class="form-group{{ $errors->has('g-recaptcha-response') ? ' has-error' : '' }}">
+							<p class="text-danger">{{ $errors->first('g-recaptcha-response')}}</p>
 						</div>
 						<div class="form-group">
 							<button type="submit" class="btn btn-primary">Publish</button>

@@ -7,11 +7,13 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<div class="level">
-							<img src="{{ $thread->creator->avatar_path }}" alt="{{ $thread->creator->name }}" width="25" height="25" style="margin-right:10px; border-radius:15px;">
+
+							<img src="{{ $thread->creator->avatar_path }}" alt="{{ $thread->creator->name }}" width="25" height="25" style="border-radius:15px;margin-right:5px">
 
 							<span class="flex" style="
 							font-size: 18px;">
-								<a href="{{ route('profile', $thread->creator) }}">{{ $thread->creator->name }}</a> posted: {{ $thread->title }}
+								<a href="{{ route('profile', $thread->creator) }}">{{ $thread->creator->name }}</a>
+								posted: {{ $thread->title }}
 							</span>
 
 							@can ('update', $thread)
@@ -45,7 +47,7 @@
 
 						<p>
 							<subscribe-button v-if="signedIn" :active="{{ json_encode($thread->isSubscribedTo) }}"></subscribe-button>
-							<button v-if="authorize('isAdmin')" class="btn btn-default" @click="toggleLock" v-text="locked? 'Unlock'   : 'Lock'"></button>
+							<button v-if="authorize('isAdmin')" class="btn btn-danger" @click="toggleLock" v-text="locked? 'Unlock'   : 'Lock'"></button>
 
 						</p>
 					</div>

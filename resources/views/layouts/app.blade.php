@@ -13,9 +13,9 @@
 	<script src="https://use.fontawesome.com/21fa307658.js"></script>
 	<title>Forum</title>
 	<!-- Styles -->
-	<link rel="stylesheet" href="{{ asset('css/mdb.min.css') }}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.4/css/mdb.min.css">
 	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.4/js/mdb.min.js">
 	<script>
 		window.App={!!json_encode(['csrfToken'=>csrf_token(),
       'user'=>Auth::user(),
@@ -29,14 +29,18 @@
 			margin-right: 7px
 		}
 
+
 		body {
 			font-family: 'Encode Sans Expanded', sans-serif;
 			background-color: #fbfbfb;
-			padding-bottom: 100px;
+		}
+
+		.footer {
+			margin-top: 300px;
 		}
 
 		.navbar {
-			box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12)
+			border-radius: 0px;
 		}
 
 		[v-cloak] {
@@ -100,5 +104,6 @@
 	<script src="{{ asset('js/app.js') }}"></script>
 
 </body>
+@include('layouts.footer')
 
 </html>
