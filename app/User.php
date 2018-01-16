@@ -50,7 +50,7 @@ class User extends Authenticatable
 
     public function isAdmin()
     {
-        return in_array($this->name, ['Mirahmad', 'John']);
+        return in_array($this->name, ['Mirahmad', 'JohnDoe']);
     }
 
     public function visitedThreadCacheKey($thread)
