@@ -1,5 +1,5 @@
 <!--Footer-->
-<footer class="page-footer footer center-on-small-only blue-grey lighten-5 pt-0">
+<footer class="page-footer footer center-on-small-only blue-grey lighten-5 pt-0" style="margin-top:300px">
 
 	<div style="background-color: grey;">
 		<div class="container">

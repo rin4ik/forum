@@ -5,6 +5,9 @@
 			@include('threads._list')
 		</div>
 		<div class="col-md-4">
+
+			<!--/.Card content-->
+
 			@if(count($trending))
 			<div class="panel panel-default">
 				<div class="panel-heading" style="background-color: rgba(49, 52, 53, 0.1);border-radius: 5px; text-align:center">
@@ -24,6 +27,9 @@
 				</div>
 			</div>
 			@endif
+
+
+
 		</div>
 	</div>
 </div>

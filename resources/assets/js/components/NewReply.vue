@@ -7,7 +7,7 @@
                 <div class="form-group">
                     <textarea name="body" id="body" class="form-control" placeholder="Jot something down" rows="5" v-model="body" required></textarea>
                </div>
-                <button type="submit" @click="addReply" class="btn btn-primary">Post</button>
+                <button type="submit" @click="addReply" class="btn btn-outline-primary waves-effect">Post</button>
             <!-- </form> -->
 </div>
 

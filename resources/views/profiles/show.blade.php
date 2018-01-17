@@ -15,6 +15,7 @@
 			@endforelse {{-- {{$activity->links()}} --}}
 		</div>
 	</div>
+
 </div>
 
 @endsection

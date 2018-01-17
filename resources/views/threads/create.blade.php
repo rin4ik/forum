@@ -26,11 +26,13 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="title"> Title:</label>
-							<input type="text" class="form-control" id="title" placeholder="Add a title" name="title" value="{{old('title')}}" required>
-							<p class="text-danger">{{ $errors->first('title') }}</p>
-						</div>
 
+							<label class="active" for="title">Title:</label>
+							<input type="text" id="title" style="box-sizing:inherit" placeholder="Add a title" name="title" value="{{old('title')}}"
+							 required>
+							<p class="text-danger">{{ $errors->first('title') }}</p>
+
+						</div>
 						<div class="form-group">
 							<label for="body"> Body:</label>
 							<textarea name="body" id="body" class="form-control" placeholder="Have something to say?" rows="6" required>{{old('body')}}</textarea>

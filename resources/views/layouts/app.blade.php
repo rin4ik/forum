@@ -35,9 +35,6 @@
 			background-color: #fbfbfb;
 		}
 
-		.footer {
-			margin-top: 300px;
-		}
 
 		.navbar {
 			border-radius: 0px;

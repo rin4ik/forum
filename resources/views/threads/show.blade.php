@@ -37,6 +37,15 @@
 			</div>
 
 			<div class="col-md-4">
+				<div class="card">
+					<!--Card image-->
+					<div class="view overlay hm-white-slight">
+						<img src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg" class="img-fluid" alt="">
+						<a href="#">
+							<div class="mask"></div>
+						</a>
+					</div>
+				</div>
 				<div class="panel panel-default">
 					<div class="panel-body">
 						<p>
@@ -47,7 +56,7 @@
 
 						<p>
 							<subscribe-button v-if="signedIn" :active="{{ json_encode($thread->isSubscribedTo) }}"></subscribe-button>
-							<button v-if="authorize('isAdmin')" class="btn btn-danger" @click="toggleLock" v-text="locked? 'Unlock'   : 'Lock'"></button>
+							<button v-if="authorize('isAdmin')" class="btn btn-outline-danger waves-effect" @click="toggleLock" v-text="locked? 'Unlock'   : 'Lock'"></button>
 
 						</p>
 					</div>

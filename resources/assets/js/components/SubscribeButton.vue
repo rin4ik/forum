@@ -17,7 +17,12 @@ export default {
   },
   computed: {
     classes() {
-      return ["btn", this.actived ? "btn-primary" : "btn-default"];
+      return [
+        "btn",
+        this.actived
+          ? "btn-outline-primary waves-effect"
+          : "btn-outline-default waves-effect"
+      ];
     },
     sss() {
       return this.actived ? "Subscribed" : "Subscribe";
