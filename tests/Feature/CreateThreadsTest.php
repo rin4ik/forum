@@ -68,7 +68,6 @@ class CreateThreadsTest extends TestCase
         $this->publishThread(['title' => null])
         ->assertSessionHasErrors('title');
     }
-
     /** @test */
     public function thread_requires_a_body()
     {

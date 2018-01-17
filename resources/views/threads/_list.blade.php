@@ -1,7 +1,7 @@
 @forelse($threads as $thread)
 <div class="panel panel-default">
 	<div class="panel-heading" style="padding: 0px;
-padding-left: 10px; padding-right:10px; border-radius: 5px; ">
+padding-left: 10px; padding-right:10px;">
 		<div class="level">
 			<h4 class="flex" style="margin: 6px; padding:4px; padding-left:0">
 				<a href="{{ $thread->path() }}">

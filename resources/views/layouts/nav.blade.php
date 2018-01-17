@@ -29,7 +29,7 @@
 
 					<ul class="dropdown-menu ">
 						<li>
-							<a class="dropdown-item" href="/threads">All Threads</a>
+							<a href="/threads">All Threads</a>
 						</li>
 						@auth
 						<li>
