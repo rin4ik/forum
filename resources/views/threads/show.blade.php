@@ -40,7 +40,7 @@
 				<div class="card">
 					<!--Card image-->
 					<div class="view overlay hm-white-slight">
-						<img src="https://mdbootstrap.com/img/Mockups/Lightbox/Thumbnail/img%20(67).jpg" class="img-fluid" alt="">
+						<img src="/img/tab.jpg" class="img-fluid" alt="">
 						<a href="#">
 							<div class="mask"></div>
 						</a>

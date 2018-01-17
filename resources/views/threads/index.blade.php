@@ -10,21 +10,21 @@
 
 			@if(count($trending))
 			<div class="panel panel-default">
-				<div class="panel-heading" style="background-color: rgba(49, 52, 53, 0.1);border-radius: 5px; text-align:center">
+				<div class="panel-heading" style="border-radius: 5px; text-align:center">
 					<b>Trending Threads</b>
 				</div>
-				<div class="panel-body">
-					<ul class="list-group">
-						@foreach($trending as $thread)
 
-						<li class="list-group-item">
-							<a href="{{url($thread->path)}}">
-								<p>{{$thread->title}}</p>
-							</a>
-						</li>
-						@endforeach
-					</ul>
-				</div>
+				<ul class="list-group">
+					@foreach($trending as $thread)
+
+					<li class="list-group-item">
+						<a href="{{url($thread->path)}}">
+							<p>{{$thread->title}}</p>
+						</a>
+					</li>
+					@endforeach
+				</ul>
+
 			</div>
 			@endif
 

@@ -21,7 +21,7 @@ window.Vue.prototype.signedIn = window.App.signedIn;
 try {
     window.$ = window.jQuery = require('jquery');
 
-    require('bootstrap-sass');
+    require('bootstrap-sass')
 } catch (e) {
     "sadasdas";
 }

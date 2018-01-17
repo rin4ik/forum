@@ -24,25 +24,24 @@
                                         <textarea class="form-control" v-model="body" required></textarea>
                                 </div>
                                 <button class="btn btn-xs btn-primary">Update</button>
-                                <button class="btn btn-xs btn-link" @click="editing=false" 
+                                <button class="btn btn-xs btn-danger" @click="editing=false" 
                                 type="button">Cancel</button>
                                 </form>
                         </div>
                         <div v-else v-html="body">  
                         </div>
                 </div>
-<hr style="margin:0; width:15%">
                      
                       <div v-if="authorize('owns',reply)" style="padding: 0; background-color: white; float:left">
                         
-                        <button class="btn btn-link " @click="editing = true">
+                        <button class="btn btn-xs btn-outline-primary waves-effect" @click="editing = true" style="box-shadow:0">
                                 <i class="fa fa-pencil-square-o" style="color:rgb(37, 87, 188)" aria-hidden="true"></i> Edit</button>
                          </div>  
                          
                          <div class='level'>
                                  <favorite :reply="reply" style="padding-left:10px;"></favorite> 
                                 
-                                 <p v-if="signedIn" class="ml-a"><button class="btn btn-xs btn-default" v-if="authorize('owns',reply.thread)" @click="markBestReply" v-show="!isBest">Best Reply?</button></p>
+                                 <p v-if="signedIn" class="ml-a"><button class="btn btn-xs btn-light-green" v-if="authorize('owns',reply.thread)" @click="markBestReply" v-show="!isBest" style="box-shadow:0">Best Reply?</button></p>
                                  <p class="ml-a" @click="markBestReply" v-show="isBest" style="color:#3c763d">Best <i class="fa fa-check-square-o" aria-hidden="true"></i></p>
                                    
                         </div>     
