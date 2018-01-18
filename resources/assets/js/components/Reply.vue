@@ -1,6 +1,6 @@
 <template>
         <div :id="'reply-'+id" class="panel" :class="isBest? 'panel-success' : 'panel-default'">
-                <div class="panel-heading" style="padding-top: 0px;border-radius: 5px;
+                <div class="panel-heading" style="padding-top: 0px;
      padding-bottom: 0px;">
 
                         <div class="level">
@@ -10,7 +10,7 @@
                                 </h5>
                                 <div v-if="authorize('owns',reply)">                       
                         <button type="submit" class="btn btn-link" style="font-weight: 700; width:30px;margin-top: -45px;
-                 margin-right: -17.5px; height:20px;" @click="destroy">
+                        margin-right: -17.5px; height:20px;" @click="destroy">
                                         <i class="fa fa-window-close" style="color:rgba(24, 24, 26, 0.77)" aria-hidden="true"></i>
 
                                 </button>

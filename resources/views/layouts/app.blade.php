@@ -13,8 +13,6 @@
 	<title>Forum</title>
 	<!-- Styles -->
 
-
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.1/css/mdb.css">
 	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Encode+Sans+Expanded:500" rel="stylesheet">
 
@@ -30,7 +28,6 @@
 			margin-left: auto;
 			margin-right: 7px
 		}
-
 
 		body {
 			font-family: 'Encode Sans Expanded', sans-serif;
@@ -55,6 +52,7 @@
 			position: relative;
 			overflow: hidden;
 		}
+
 
 		.btn-file input[type=file] {
 			position: absolute;
@@ -97,6 +95,7 @@
 	<div id="app">
 		@include('layouts.nav') @yield('content')
 		<flash message="{{session('flash')}}"></flash>
+
 	</div>
 
 	<!-- Scripts -->

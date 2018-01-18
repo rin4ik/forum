@@ -7,7 +7,8 @@ export default {
   data() {
     return {
       repliesCount: this.thread.replies_count,
-      locked: this.thread.locked
+      locked: this.thread.locked,
+      editing: false
     };
   },
   methods: {
@@ -16,6 +17,9 @@ export default {
         "/locked-threads/" + this.thread.slug
       );
       this.locked = !this.locked;
+    },
+    toggleEdit() {
+      this.editing = !this.editing;
     }
   }
 };

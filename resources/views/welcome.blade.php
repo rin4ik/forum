@@ -16,7 +16,7 @@
 		body {
 			background-color: #eee0;
 			color: #FFF;
-			font-family: 'Encode Sans Expanded', sans-serif;
+			font-family: 'Rajdhani', sans-serif;
 
 			font-weight: 500;
 			height: 100vh;

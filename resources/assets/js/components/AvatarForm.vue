@@ -1,12 +1,10 @@
 <template>
 <div>
   <div class="level">
-				<img :src="avatar" width="50" height="50" style="margin-right:10px;"> 
-   <strong> <h1 v-text="user.name">
-    </h1> </strong>
-  </div>
-				
-                           
+				<img :src="avatar" width="100" height="100" style="margin-right:10px; border-radius:50px"> 
+    <h1 v-text="uppercase(user.name)">
+    </h1>
+  </div>                   
                 <form v-if="canUpdate" method="post" enctype="multipart/form-data">
 <image-upload name="avatar" class='mr-1' @loaded="onLoad">
 
@@ -34,6 +32,9 @@ export default {
   },
   created() {},
   methods: {
+    uppercase: function(v) {
+      return v.toUpperCase();
+    },
     onLoad(avatar) {
       this.avatar = avatar.src;
       this.persist(avatar.file);

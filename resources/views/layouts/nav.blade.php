@@ -23,8 +23,8 @@
 
 				<li class="nav-item dropdown">
 					<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-						Browse
-						<span class="caret"></span>
+							Browse
+							<span class="caret"></span>
 					</a>
 
 					<ul class="dropdown-menu ">
