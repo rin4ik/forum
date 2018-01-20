@@ -4,7 +4,7 @@
 		<div class="level">
 			<div class="md-form">
 				<input style="
-                font-size: 18px;" type="text" value="{{$thread->title}}" class="form-control">
+                font-size: 18px;" type="text" columns="20" value="{{$thread->title}}" class="form-control" v-model="form.title">
 			</div> @can ('update', $thread)
 			<form action="{{ $thread->path() }}" method="POST" class="ml-a">
 				{{ csrf_field() }} {{ method_field('DELETE') }}
@@ -19,13 +19,13 @@
 
 	<div class="panel-body">
 		<div class="md-form">
-			<textarea class="form-control">{{ $thread->body }}</textarea>
+			<textarea class="form-control" rows="10" v-model="form.body">{{ $thread->body }}</textarea>
 		</div>
 
 	</div>
 	<div>
-		<button class="btn btn-xs btn-primary" @click="">Update</button>
-		<button class="btn btn-xs btn-danger waves-effect" @click="editing=false" style="box-shadow:0">Cancel</button>
+		<button class="btn btn-xs btn-primary" @click="update">Update</button>
+		<button class="btn btn-xs btn-danger waves-effect" @click="cancel" style="box-shadow:0">Cancel</button>
 	</div>
 </div>
 {{-- viewing the question --}}
@@ -38,7 +38,8 @@
 			<span class="flex" style="
                     font-size: 18px;">
 				<a href="{{ route('profile', $thread->creator) }}">{{ $thread->creator->name }}</a>
-				posted: {{ $thread->title }}
+				posted:
+				<span v-text="form.title"></span>
 			</span>
 
 			@can ('update', $thread)
@@ -53,11 +54,11 @@
 		</div>
 	</div>
 
-	<div class="panel-body">
-		{{ $thread->body }}
+	<div class="panel-body" v-text="form.body">
+
 	</div>
-	<div>
-		<button class="btn btn-xs btn-outline-primary waves-effect" @click="toggleEdit" style="box-shadow:0" v-cloak>
-			<i class="fa fa-pencil-square-o" style="color:rgb(37, 87, 188)" aria-hidden="true"></i> Edit</button>
+	<div v-if="authorize( 'owns' ,thread)">
+		<button class=" btn btn-xs btn-outline-primary waves-effect " @click="toggleEdit " style="box-shadow:0 " v-cloak>
+			<i class="fa fa-pencil-square-o " style="color:rgb(37, 87, 188) " aria-hidden="true "></i> Edit</button>
 	</div>
 </div>

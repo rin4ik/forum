@@ -8102,7 +8102,7 @@ button:focus {
 }
 
 .btn-group .btn {
-  margin: 0;
+  margin: 5px;
 }
 
 .btn-block {

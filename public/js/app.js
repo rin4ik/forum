@@ -59556,7 +59556,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     return {
       repliesCount: this.thread.replies_count,
       locked: this.thread.locked,
-      editing: false
+      editing: false,
+      form: { title: this.thread.title, body: this.thread.body }
     };
   },
 
@@ -59567,6 +59568,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     toggleEdit: function toggleEdit() {
       this.editing = !this.editing;
+    },
+    cancel: function cancel() {
+      this.form.title = this.thread.title;
+      this.form.body = this.thread.body;
+      this.form = {
+        title: this.thread.title,
+        body: this.thread.body
+      };
+      this.editing = false;
+    },
+    update: function update() {
+      var _this = this;
+
+      var uri = "/threads/" + this.thread.channel.slug + "/" + this.thread.slug;
+      axios.patch(uri, this.form).catch(function (error) {
+        flash(error.response.data, "danger");
+      }).then(function (_ref) {
+        var data = _ref.data;
+
+        _this.editing = false;
+        flash("Updated!!");
+      });
     }
   }
 });

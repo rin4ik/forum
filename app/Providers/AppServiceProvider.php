@@ -18,6 +18,9 @@ class AppServiceProvider extends ServiceProvider
             $view->with('channels', Channel::all());
         });
         \Validator::extend('spamfree', 'App\Rules\SpamFree@passes');
+        $this->app->singleton(Illuminate\Support\EngineManager::class, function ($app) {
+            return new \Laravel\Scout\EngineManager($app);
+        });
     }
 
     /**

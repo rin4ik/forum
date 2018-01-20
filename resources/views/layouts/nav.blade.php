@@ -23,8 +23,8 @@
 
 				<li class="nav-item dropdown">
 					<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-							Browse
-							<span class="caret"></span>
+						Browse
+						<span class="caret"></span>
 					</a>
 
 					<ul class="dropdown-menu ">
@@ -54,7 +54,7 @@
 					</a>
 
 					<ul class="dropdown-menu">
-						@forelse ($channels as $channel) @if(count($channel))
+						@forelse (\App\Channel::all() as $channel) @if(count($channel))
 
 						<li class="nav-item">
 							<a class="nav-link" href="/threads/{{ $channel->slug }}">{{ $channel->name }}</a>

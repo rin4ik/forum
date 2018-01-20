@@ -14,6 +14,7 @@
 	<!-- Styles -->
 
 	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+	<link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Encode+Sans+Expanded:500" rel="stylesheet">
 
 	<script>
@@ -53,6 +54,9 @@
 			overflow: hidden;
 		}
 
+		.btn {
+			margin-bottom: 5px;
+		}
 
 		.btn-file input[type=file] {
 			position: absolute;

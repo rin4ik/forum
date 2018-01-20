@@ -8,7 +8,8 @@ export default {
     return {
       repliesCount: this.thread.replies_count,
       locked: this.thread.locked,
-      editing: false
+      editing: false,
+      form: { title: this.thread.title, body: this.thread.body }
     };
   },
   methods: {
@@ -20,6 +21,27 @@ export default {
     },
     toggleEdit() {
       this.editing = !this.editing;
+    },
+    cancel() {
+      this.form.title = this.thread.title;
+      this.form.body = this.thread.body;
+      this.form = {
+        title: this.thread.title,
+        body: this.thread.body
+      };
+      this.editing = false;
+    },
+    update() {
+      let uri = `/threads/${this.thread.channel.slug}/${this.thread.slug}`;
+      axios
+        .patch(uri, this.form)
+        .catch(error => {
+          flash(error.response.data, "danger");
+        })
+        .then(({ data }) => {
+          this.editing = false;
+          flash("Updated!!");
+        });
     }
   }
 };
