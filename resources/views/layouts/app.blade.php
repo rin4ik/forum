@@ -35,6 +35,10 @@
 			background-color: #fbfbfb;
 		}
 
+		span.ais-highlight em {
+			background: yellow;
+			font-style: normal;
+		}
 
 		.navbar {
 			border-radius: 0px;

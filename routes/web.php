@@ -16,6 +16,8 @@ Route::get('/', function () {
 });
 Route::get('/threads/search', 'SearchController@show');
 
+Route::view('scan','scan');
+
 Route::get('/home', 'HomeController@index');
 //Route::resource('threads', 'ThreadsController');
 Route::get('/threads/{channel}/{thread}', 'ThreadsController@show');
