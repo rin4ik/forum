@@ -13,7 +13,7 @@
 				<div class="panel-body">
 					<form method="GET" action="/threads/search">
 						<input type="text" style="box-sizing:inherit" placeholder="Search for something..." class="form-control" name="q" id="">
-						<button type="submit" class="btn btn-outline-primary waves-effect" style=" display:block;
+						<button type="submit" class="button caps is-info is-outlined" style=" display:block;
 						text-align:center ;
 						margin:0 auto">
 							<i class="fa fa-search" aria-hidden="true"></i> Search

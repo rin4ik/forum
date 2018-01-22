@@ -1,6 +1,6 @@
 <template>
- <button type="submit"  @click='toggle' class="btn btn-xs btn-outline-danger waves-effect" :class="signedIn?'':'disabled'" style="padding-left:0px;  text-decoration:none;" >
-      <span v-text="count"> </span> <i class="fa" :class="classes" aria-hidden="true" ></i></button>
+ <button type="submit"  @click='toggle' class="btn is-small button is-danger is-outlined caps" :class="signedIn?'':'disabled'" style="padding-left:0px;  text-decoration:none;" >
+      <span v-text="count">  </span> <i class="fa" :class="classes" aria-hidden="true" ></i></button>
 </template>
 
 <script>

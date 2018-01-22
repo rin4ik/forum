@@ -5,7 +5,8 @@
             <!-- <form method="POST" action="{{$thread->path().'/replies'}}"> -->
                 <!-- {{csrf_field()}} -->
                 <div class="form-group">
-                    <textarea name="body" id="body" class="form-control" placeholder="Jot something down" rows="5" v-model="body" required></textarea>
+                   <wysiwyg name="body" v-model="body" placeholder="Jot something down" :shouldClear="completed"></wysiwyg>
+                   
                </div>
                 <button type="submit" @click="addReply" class="btn btn-outline-primary waves-effect">Post</button>
             <!-- </form> -->
@@ -27,7 +28,8 @@ import "jquery.caret";
 export default {
   data() {
     return {
-      body: ""
+      body: "",
+      completed: false
     };
   },
   mounted() {
@@ -53,6 +55,7 @@ export default {
         })
         .then(({ data }) => {
           this.body = "";
+          this.completed = true;
           flash("Your reply has been posted.");
           this.$emit("created", data);
         });

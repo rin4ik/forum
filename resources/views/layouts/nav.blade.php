@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark indigo lighten-1">
+<nav class="navbar is-info">
 
 	<div class="container">
 		<div class="navbar-header">

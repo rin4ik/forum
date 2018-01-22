@@ -12,10 +12,10 @@
 	<script src="https://use.fontawesome.com/21fa307658.js"></script>
 	<title>Forum</title>
 	<!-- Styles -->
-
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/0.11.1/trix.css">
 	<link href="{{ asset('css/app.css') }}" rel="stylesheet">
-	<link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Encode+Sans+Expanded:500" rel="stylesheet">
+	<link href="{{ asset('css/style.css') }}" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Encode+Sans+Expanded" rel="stylesheet">
 
 	<script>
 		window.App={!!json_encode(['csrfToken'=>csrf_token(),
@@ -24,79 +24,7 @@
       ])!!};
 	</script>
 	@yield('header')
-	<style>
-		.ml-a {
-			margin-left: auto;
-			margin-right: 7px
-		}
 
-		body {
-			font-family: 'Encode Sans Expanded', sans-serif;
-			background-color: #fbfbfb;
-		}
-
-		span.ais-highlight em {
-			background: yellow;
-			font-style: normal;
-		}
-
-		.navbar {
-			border-radius: 0px;
-		}
-
-		[v-cloak] {
-			display: none;
-		}
-
-		,
-		.fa-heart-o::before {
-			content: "\f087";
-		}
-
-		.btn-file {
-			position: relative;
-			overflow: hidden;
-		}
-
-		.btn {
-			margin-bottom: 5px;
-		}
-
-		.btn-file input[type=file] {
-			position: absolute;
-			top: 0;
-			right: 0;
-			min-width: 100%;
-			min-height: 100%;
-			font-size: 100px;
-			text-align: right;
-			filter: alpha(opacity=0);
-			opacity: 0;
-			outline: none;
-			background: white;
-			cursor: inherit;
-			display: block;
-		}
-
-		#heart {
-			text-shadow: 1px 1px 1px #f0d1d1;
-			font-size: 1.1em;
-		}
-
-		.level {
-
-			display: flex;
-			align-items: center;
-		}
-
-		a:hover {
-			text-decoration: none
-		}
-
-		.flex {
-			flex: 1;
-		}
-	</style>
 </head>
 
 <body>
@@ -107,8 +35,9 @@
 	</div>
 
 	<!-- Scripts -->
-	<script src="{{ asset('js/app.js') }}"></script>
 
+
+	<script src="{{ asset('js/app.js') }}"></script>
 </body>
 @include('layouts.footer')
 

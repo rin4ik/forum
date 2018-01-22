@@ -15,9 +15,9 @@
 
 						<div class="form-group">
 							<label for="channel_id"> Choose a channel:</label>
-							<select name="channel_id" id="channel_id" required>
+							<select name="channel_id" id="channel_id" class="form-control" required>
 								<option value="">choose one...</option>
-								@foreach($channels as $channel)
+								@foreach(\App\Channel::all() as $channel)
 								<option value="{{$channel->id}}" {{old( 'channel_id')==$channel->id ? 'selected' : ''}}>{{$channel->name}}</option>
 								@endforeach
 							</select>
@@ -28,14 +28,14 @@
 						<div class="form-group">
 
 							<label class="active" for="title">Title:</label>
-							<input type="text" id="title" style="box-sizing:inherit" placeholder="Add a title" name="title" value="{{old('title')}}"
+							<input type="text" class="form-control" id="title" style="box-sizing:inherit" placeholder="Add a title" name="title" value="{{old('title')}}"
 							 required>
 							<p class="text-danger">{{ $errors->first('title') }}</p>
 
 						</div>
 						<div class="form-group">
 							<label for="body"> Body:</label>
-							<textarea name="body" id="body" class="form-control" placeholder="Have something to say?" rows="6" required>{{old('body')}}</textarea>
+							<wysiwyg name="body"></wysiwyg>
 							<div class="form-group{{ $errors->has('body') ? ' has-error' : '' }}">
 								<p class="text-danger">{{ $errors->first('body') }}</p>
 							</div>
@@ -45,7 +45,7 @@
 							<p class="text-danger">{{ $errors->first('g-recaptcha-response')}}</p>
 						</div>
 						<div class="form-group">
-							<button type="submit" class="btn btn-primary">Publish</button>
+							<button type="submit" class="btn caps btn-primary ">Publish</button>
 
 						</div>
 					</form>

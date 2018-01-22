@@ -1,31 +1,21 @@
 {{-- editin the question --}}
 <div class="panel panel-default" v-if="editing">
 	<div class="panel-heading">
-		<div class="level">
-			<div class="md-form">
-				<input style="
-                font-size: 18px;" type="text" columns="20" value="{{$thread->title}}" class="form-control" v-model="form.title">
-			</div> @can ('update', $thread)
-			<form action="{{ $thread->path() }}" method="POST" class="ml-a">
-				{{ csrf_field() }} {{ method_field('DELETE') }}
 
-				<button type="submit" style="padding-bottom:0; padding-top:0;" class="btn btn-xs btn-outline-danger waves-effect">
-					<b>Delete Thread</b>
-				</button>
-			</form>
-			@endcan
-		</div>
+		<input style="
+                font-size: 18px;" type="text" value="{{$thread->title}}" class="form-control" v-model="form.title">
+
 	</div>
 
 	<div class="panel-body">
 		<div class="md-form">
-			<textarea class="form-control" rows="10" v-model="form.body">{{ $thread->body }}</textarea>
+			<wysiwyg v-model="form.body" :value="form.body"></wysiwyg>
 		</div>
 
 	</div>
 	<div>
 		<button class="btn btn-xs btn-primary" @click="update">Update</button>
-		<button class="btn btn-xs btn-danger waves-effect" @click="cancel" style="box-shadow:0">Cancel</button>
+		<button class="btn btn-xs btn-danger " @click="cancel" style="box-shadow:0">Cancel</button>
 	</div>
 </div>
 {{-- viewing the question --}}
@@ -46,7 +36,7 @@
 			<form action="{{ $thread->path() }}" method="POST">
 				{{ csrf_field() }} {{ method_field('DELETE') }}
 
-				<button type="submit" class="btn btn-xs btn-outline-danger waves-effect">
+				<button type="submit" class="btn is-small button is-danger is-outlined caps">
 					<b>Delete Thread</b>
 				</button>
 			</form>
@@ -54,11 +44,11 @@
 		</div>
 	</div>
 
-	<div class="panel-body" v-text="form.body">
+	<div class="panel-body" v-html="form.body">
 
 	</div>
 	<div v-if="authorize( 'owns' ,thread)">
-		<button class=" btn btn-xs btn-outline-primary waves-effect " @click="toggleEdit " style="box-shadow:0 " v-cloak>
+		<button class="btn is-small button is-info is-outlined caps" @click="toggleEdit " v-cloak>
 			<i class="fa fa-pencil-square-o " style="color:rgb(37, 87, 188) " aria-hidden="true "></i> Edit</button>
 	</div>
 </div>

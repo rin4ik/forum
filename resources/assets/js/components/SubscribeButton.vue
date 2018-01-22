@@ -1,6 +1,6 @@
 <template>
 
-  <button class="btn btn-rounded" :class="classes" @click="subscribe" v-text="sss">
+  <button class="btn caps button is-primary is-outlined " @click="subscribe" v-text="sss">
                       
   </button>
 
@@ -16,14 +16,6 @@ export default {
     };
   },
   computed: {
-    classes() {
-      return [
-        "btn",
-        this.actived
-          ? "btn-outline-primary waves-effect"
-          : "btn-outline-default waves-effect"
-      ];
-    },
     sss() {
       return this.actived ? "Subscribed" : "Subscribe";
     },

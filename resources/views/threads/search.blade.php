@@ -36,10 +36,10 @@
 					</div>
 					<div class="panel-body">
 
-						<ais-search-box>
+						<ais-search-box class="form-group">
 
-							<ais-input placeholder="Find a thread..." :autofocus="autofocus">
-								<i class="fa fa-search" aria-hidden="true"></i>
+							<ais-input class="form-control" placeholder="Find a thread..." :autofocus="true">
+							
 							</ais-input>
 
 						</ais-search-box>
