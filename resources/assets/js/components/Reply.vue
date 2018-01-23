@@ -22,8 +22,8 @@
                                 <div class="form-group">
                                         <wysiwyg v-model="body"></wysiwyg>
                                 </div>
-                                <button class="btn btn-xs btn-primary">Update</button>
-                                <button class="btn btn-xs btn-danger" @click="editing=false" 
+                                <button class="button is-info caps">Update</button>
+                                <button class="button is-danger is-small caps" @click="editing=false" 
                                 type="button">Cancel</button>
                                 </form>
                         </div>
@@ -33,14 +33,14 @@
                      
                       <div v-if="authorize('owns',reply)" style="padding: 0; background-color: white; float:left">
                         
-                        <button class="btn is-small button is-info is-outlined caps" @click="editing = true" style="box-shadow:0">
+                        <button class="btn is-small btn-link caps" @click="editing = true" style="box-shadow:0; padding-right:0">
                                 <i class="fa fa-pencil-square-o" style="color:rgb(37, 87, 188)" aria-hidden="true"></i> Edit</button>
                          </div>  
                          
                          <div class='level'>
                                  <favorite :reply="reply" style="padding-left:10px;"></favorite> 
                                 
-                                 <p v-if="signedIn" class="ml-a"><button class="btn is-small button is-success is-outlined caps" v-if="authorize('owns',reply.thread)" @click="markBestReply" v-show="!isBest" style="box-shadow:0">Best Reply?</button></p>
+                                 <p v-if="signedIn" class="ml-a"><button class="btn btn-link caps" v-if="authorize('owns',reply.thread)" @click="markBestReply" v-show="!isBest" style="box-shadow:0;color:rgb(60, 150, 60)">Best Reply?</button></p>
                                  <p class="ml-a" @click="markBestReply" v-show="isBest" style="color:#3c763d">Best <i class="fa fa-check-square-o" aria-hidden="true"></i></p>
                                    
                         </div>     

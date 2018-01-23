@@ -86,20 +86,15 @@
 
 		<div class="content">
 
-                
+
 			<div class="title m-b-md">
 				<a href="/threads" style="text-decoration: none; color:#727b7b">Threads</a>
 			</div>
 
 		</div>
 	</div>
-		<!-- Scripts -->
-
-		<script type="text/javascript" src="/js/jquery-3.2.1.min.js"></script>
-		<script type="text/javascript" src="/js/popper.min.js"></script>
-		<script type="text/javascript" src="/js/bootstrap.js"></script>
-		<script type="text/javascript" src="/js/mdb.js"></script>
-		<script src="{{ asset('js/app.js') }}"></script>
+	<!-- Scripts -->
+	<script src="{{ asset('js/app.js') }}"></script>
 </body>
 
 </html>

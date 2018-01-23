@@ -28,7 +28,7 @@
 
 						<p>
 							<subscribe-button v-if="signedIn" :active="{{ json_encode($thread->isSubscribedTo) }}"></subscribe-button>
-							<button v-if="authorize('isAdmin')" class="btn button is-danger is-outlined caps" @click="toggleLock" v-text="locked? 'Unlock'   : 'Lock'">
+							<button v-if="authorize('isAdmin')" class="btn shadow button is-danger is-outlined " @click="toggleLock" v-text="locked? 'UNLOCK'   : 'LOCK'">
 							</button>
 
 						</p>

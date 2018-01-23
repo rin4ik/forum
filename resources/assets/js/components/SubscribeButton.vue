@@ -1,6 +1,7 @@
 <template>
 
-  <button class="btn caps button is-primary is-outlined " @click="subscribe" v-text="sss">
+  <button class="btn shadow button is-link" :class="classes" @click="subscribe" v-text="sss" style="box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);
+">
                       
   </button>
 
@@ -16,8 +17,11 @@ export default {
     };
   },
   computed: {
+    classes() {
+      return this.actived ? "" : " is-outlined";
+    },
     sss() {
-      return this.actived ? "Subscribed" : "Subscribe";
+      return this.actived ? "SUBSCRIBED" : "SUBSCRIBE";
     },
     signedIn() {
       return window.App.signedIn;

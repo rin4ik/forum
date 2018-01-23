@@ -111,4 +111,9 @@ class Thread extends Model
     public function toSearchableArray()
     {
         return $this->toArray() + ['path' => $this->path()];
-    }}
+    }
+    public function getBodyAttribute($body)
+    {
+        return \Purify::clean($body);
+    }
+}

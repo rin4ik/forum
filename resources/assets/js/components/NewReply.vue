@@ -8,7 +8,7 @@
                    <wysiwyg name="body" v-model="body" placeholder="Jot something down" :shouldClear="completed"></wysiwyg>
                    
                </div>
-                <button type="submit" @click="addReply" class="btn btn-outline-primary waves-effect">Post</button>
+                <button type="submit" @click="addReply" class="btn shadow button is-info ">POST</button>
             <!-- </form> -->
 </div>
 

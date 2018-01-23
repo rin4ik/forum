@@ -6,17 +6,18 @@
 		</div>
 		<div class="col-md-4">
 			<div class="panel panel-default">
-				<div class="panel-heading" style="border-radius: 5px; text-align:center">
-					<b>Search</b>
+				<div class="panel-heading" style=" text-align:center">
+					Search
 				</div>
 
 				<div class="panel-body">
 					<form method="GET" action="/threads/search">
 						<input type="text" style="box-sizing:inherit" placeholder="Search for something..." class="form-control" name="q" id="">
-						<button type="submit" class="button caps is-info is-outlined" style=" display:block;
+						<button type="submit" class="button shadow caps is-link" style="background-color:#00b1b3; display:block;
 						text-align:center ;
+						
 						margin:0 auto">
-							<i class="fa fa-search" aria-hidden="true"></i> Search
+							<b class="caps"> Search</b>
 
 						</button>
 					</form>
@@ -29,7 +30,7 @@
 			@if(count($trending))
 			<div class="panel panel-default">
 				<div class="panel-heading" style="border-radius: 5px; text-align:center">
-					<b>Trending Threads</b>
+					Trending Threads
 				</div>
 
 				<ul class="list-group">

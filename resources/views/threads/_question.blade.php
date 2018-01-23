@@ -10,13 +10,14 @@
 	<div class="panel-body">
 		<div class="md-form">
 			<wysiwyg v-model="form.body" :value="form.body"></wysiwyg>
+
+			<button class="button is-info caps" @click="update">Update</button>
+			<button class="button is-danger caps" @click="cancel" style="box-shadow:0">Cancel</button>
+
 		</div>
 
 	</div>
-	<div>
-		<button class="btn btn-xs btn-primary" @click="update">Update</button>
-		<button class="btn btn-xs btn-danger " @click="cancel" style="box-shadow:0">Cancel</button>
-	</div>
+
 </div>
 {{-- viewing the question --}}
 <div class="panel panel-default" v-else>
@@ -36,7 +37,7 @@
 			<form action="{{ $thread->path() }}" method="POST">
 				{{ csrf_field() }} {{ method_field('DELETE') }}
 
-				<button type="submit" class="btn is-small button is-danger is-outlined caps">
+				<button type="submit" class="btn btn-link caps" style="color:#f15858">
 					<b>Delete Thread</b>
 				</button>
 			</form>
@@ -48,7 +49,7 @@
 
 	</div>
 	<div v-if="authorize( 'owns' ,thread)">
-		<button class="btn is-small button is-info is-outlined caps" @click="toggleEdit " v-cloak>
+		<button class="btn is-small btn-link caps" @click="toggleEdit " v-cloak>
 			<i class="fa fa-pencil-square-o " style="color:rgb(37, 87, 188) " aria-hidden="true "></i> Edit</button>
 	</div>
 </div>
