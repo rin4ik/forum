@@ -1,107 +1,88 @@
-<nav class="navbar is-info">
+<nav class="navbar is-link">
+	<div class="navbar-brand">
+		<a class="navbar-item caps" href="{{ url('/') }}" style="font-weight:700; font-size:15px">
+			{{ config('app.name') }}
+		</a>
+		<div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+	</div>
 
-	<div class="container">
-		<div class="navbar-header">
+	<div id="navbarExampleTransparentExample" class="navbar-menu">
+		<div class="navbar-start">
 
-			<!-- Collapsed Hamburger -->
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse" aria-expanded="false">
-				<span class="sr-only">Toggle Navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
+			<div class="navbar-item has-dropdown is-hoverable">
+				<a class="navbar-link" href="#">
+					Browse
+				</a>
+				<div class="navbar-dropdown is-boxed">
+					<a class="navbar-item" href="/threads">All Threads</a>
+					@auth
+					<a class="navbar-item" href="/threads?by={{auth()->user()->name}}">My Threads</a> @endauth
+					<a class="navbar-item" href="/threads?popular=1">Popular Threads</a>
+					<a class="navbar-item" href="/threads?unanswered=1">Unanswered Threads</a>
 
-			<!-- Branding Image -->
-			<a class="navbar-brand" href="{{ url('/') }}" style="color:white;font-weight:700; font-size:15px">
-				{{ config('app.name') }}
+				</div>
+			</div>
+
+			<a class="navbar-item" href="/threads/create">
+				New Thread
 			</a>
+			<div class="navbar-item has-dropdown is-hoverable">
+				<a class="navbar-link" href="#">
+					Channels
+				</a>
+				<div class="navbar-dropdown is-boxed">
+					<a class="navbar-item" href="/threads?unanswered=1">Unanswered Threads</a>
+
+					@forelse (\App\Channel::all() as $channel) @if(count($channel))
+
+					<a class="nabar-item" href="/threads/{{ $channel->slug }}">
+						{{ $channel->name }}
+					</a>
+					@endif @empty
+					<li style="padding-left:7px">No relevant results!</li>
+					@endforelse
+
+				</div>
+			</div>
 		</div>
 
-		<div class="collapse navbar-collapse" id="app-navbar-collapse">
-			<!-- Left Side Of Navbar -->
-			<ul class="nav navbar-nav">
+		<div class="navbar-end">
+			<div class="navbar-item">
+				<div class="field is-grouped">
+					@guest
+					<a class="navbar-item" href="{{ route('login') }}">Login</a>
 
-				<li class="nav-item dropdown">
-					<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-						Browse
-						<span class="caret"></span>
-					</a>
 
-					<ul class="dropdown-menu ">
-						<li>
-							<a href="/threads">All Threads</a>
-						</li>
-						@auth
-						<li>
-							<a href="/threads?by={{auth()->user()->name}}">My Threads</a>
-						</li>
-						@endauth
-						<li>
-							<a href="/threads?popular=1">Popular Threads</a>
-						</li>
-						<li>
-							<a href="/threads?unanswered=1">Unanswered Threads</a>
-						</li>
-					</ul>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="/threads/create">New Thread</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-						Channels
-						<span class="caret"></span>
-					</a>
 
-					<ul class="dropdown-menu">
-						@forelse (\App\Channel::all() as $channel) @if(count($channel))
+					<a class="navbar-item" href="{{ route('register') }}">Register</a>
 
-						<li class="nav-item">
-							<a class="nav-link" href="/threads/{{ $channel->slug }}">{{ $channel->name }}</a>
-						</li>
-						@endif @empty
-						<li style="padding-left:7px">No relevant results!</li>
-						@endforelse
-
-					</ul>
-				</li>
-			</ul>
-			<!-- Right Side Of Navbar -->
-			<ul class="nav navbar-nav navbar-right">
-				<!-- Authentication Links -->
-				@guest
-				<li class="nav-item">
-					<a class="nav-link" href="{{ route('login') }}">Login</a>
-				</li class="nav-item">
-				<li class="nav-item">
-					<a class="nav-link" href="{{ route('register') }}">Register</a>
-				</li>
-				@else
-				<user-notifications></user-notifications>
-				<li class="nav-item">
-					<a href="#" class="nav-link" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-						{{ Auth::user()->name }}
-						<span class="caret"></span>
-					</a>
-
-					<ul class="dropdown-menu">
-						<li class="nav-item">
-							<a href="/profiles/{{ Auth::user()->name }}">My Profile</a>
-						</li>
-						<li class="nav-item">
-							<a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+					@else
+					<p class="navbar-item">
+						<user-notifications></user-notifications>
+					</p>
+					<div class="navbar-item has-dropdown is-hoverable">
+						<a class="navbar-link" href="#">
+							{{ Auth::user()->name }}
+						</a>
+						<div class="navbar-dropdown is-boxed">
+							<a class="navbar-item" href="/profiles/{{ Auth::user()->name }}">My Profile</a>
+							<a class="navbar-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+								document.getElementById('logout-form').submit();">
 								Logout
 							</a>
-
 							<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 								{{ csrf_field() }}
 							</form>
-						</li>
-					</ul>
-				</li>
-				@endguest
-			</ul>
+						</div>
+
+					</div>
+					@endguest
+				</div>
+			</div>
 		</div>
 	</div>
 </nav>
