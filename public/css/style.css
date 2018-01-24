@@ -29,9 +29,14 @@ textarea {
     margin: 5px;
 }
 
+.pagination {
+    justify-content: center;
+}
+
 body {
     font-family: 'Encode Sans Expanded', sans-serif;
     background-color: #fbfbfb;
+    font-size: 15px;
 }
 
 span.ais-highlight em {
@@ -76,6 +81,10 @@ span.ais-highlight em {
 .level {
     display: flex;
     align-items: center;
+}
+
+.navbar {
+    border-radius: 0;
 }
 
 a:hover {

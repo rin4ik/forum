@@ -85502,9 +85502,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   computed: {
-    classes: function classes() {
-      return this.actived ? "" : " is-outlined";
-    },
     sss: function sss() {
       return this.actived ? "SUBSCRIBED" : "SUBSCRIBE";
     },
@@ -85534,12 +85531,12 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("button", {
-    staticClass: "btn shadow button is-link",
-    class: _vm.classes,
+    staticClass: "btn btn-primary",
     staticStyle: {
       "box-shadow":
         "0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12)"
     },
+    attrs: { type: "button" },
     domProps: { textContent: _vm._s(_vm.sss) },
     on: { click: _vm.subscribe }
   })
@@ -85886,13 +85883,7 @@ var staticRenderFns = [
         staticClass: "dropdown-complete",
         attrs: { href: "#", "data-toggle": "dropdown" }
       },
-      [
-        _c("i", {
-          staticClass: "fa fa-bell",
-          staticStyle: { color: "white" },
-          attrs: { "aria-hidden": "true" }
-        })
-      ]
+      [_c("i", { staticClass: "fa fa-bell", attrs: { "aria-hidden": "true" } })]
     )
   }
 ]

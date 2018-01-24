@@ -9,15 +9,7 @@
 				<replies @added="repliesCount++" @removed="repliesCount--"></replies>
 			</div>
 			<div class="col-md-4">
-				<div class="card">
-					<!--Card image-->
-					<div class="view overlay hm-white-slight">
-						<img src="/img/tab.jpg" class="img-fluid" alt="">
-						<a href="#">
-							<div class="mask"></div>
-						</a>
-					</div>
-				</div>
+
 				<div class="panel panel-default">
 					<div class="panel-body">
 						<p>
@@ -28,7 +20,7 @@
 
 						<p>
 							<subscribe-button v-if="signedIn" :active="{{ json_encode($thread->isSubscribedTo) }}"></subscribe-button>
-							<button v-if="authorize('isAdmin')" class="btn shadow button is-danger is-outlined " @click="toggleLock" v-text="locked? 'UNLOCK'   : 'LOCK'">
+							<button v-if="authorize('isAdmin')" class="btn shadow btn-danger " @click="toggleLock" v-text="locked? 'UNLOCK'   : 'LOCK'">
 							</button>
 
 						</p>

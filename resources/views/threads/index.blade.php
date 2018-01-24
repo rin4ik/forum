@@ -10,10 +10,10 @@
 					Search
 				</div>
 
-				<div class="panel-body">
+				<div class="panel-body ">
 					<form method="GET" action="/threads/search">
 						<input type="text" style="box-sizing:inherit" placeholder="Search for something..." class="form-control" name="q" id="">
-						<button type="submit" class="button shadow caps is-link" style="background-color:#00b1b3; display:block;
+						<button type="submit" class="button shadow caps is-link is-outlined" style=" display:block;
 						text-align:center ;
 						
 						margin:0 auto">

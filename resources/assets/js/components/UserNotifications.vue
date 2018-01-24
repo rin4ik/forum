@@ -1,7 +1,7 @@
 <template>
- <li class="dropdown" v-if="notifications.length">
+<li class="dropdown" v-if="notifications.length">
      <a href="#" class="dropdown-complete" data-toggle="dropdown">
-        <i class="fa fa-bell" aria-hidden="true" style="color:white;"></i>
+        <i class="fa fa-bell" aria-hidden="true"></i>
      </a>
      <ul class="dropdown-menu">
          <li v-for="notification in notifications" :key="notification.id">

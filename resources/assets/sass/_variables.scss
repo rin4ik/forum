@@ -1,6 +1,14 @@
 // Body
 $body-bg: #f5f8fa;
 // Borders
+$blue: #72d0eb;
+// Add pink and its invert
+$pink: #ffb3b3;
+$pink-invert: #fff;
+$navbar-item-hover-color:white;
+$navbar-item-hover-background-color: rgb(23, 23, 129);
+$navbar-item-active-color:white;
+$navbar-item-active-background-color:rgb(23, 23, 129);
 $laravel-border-color: darken($body-bg, 10%);
 $list-group-border: $laravel-border-color;
 $navbar-default-border: $laravel-border-color;
