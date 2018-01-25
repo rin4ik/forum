@@ -8,7 +8,7 @@
                    <wysiwyg name="body" v-model="body" placeholder="Jot something down" :shouldClear="completed"></wysiwyg>
                    
                </div>
-                <button type="submit" @click="addReply" class="btn shadow button is-info ">POST</button>
+                <button type="submit" @click="addReply" class="btn shadow btn-primary ">POST</button>
             <!-- </form> -->
 </div>
 
@@ -23,8 +23,7 @@
 
 <script>
 import Reply from "./Reply.vue";
-import "at.js";
-import "jquery.caret";
+
 export default {
   data() {
     return {
@@ -32,20 +31,7 @@ export default {
       completed: false
     };
   },
-  mounted() {
-    $("#body").atwho({
-      at: "@",
-      delay: 2000,
-      callbacks: {
-        remoteFilter: function(query, callback) {
-          console.log("called");
-          $.getJSON("/api/users", { name: query }, function(usernames) {
-            callback(usernames);
-          });
-        }
-      }
-    });
-  },
+
   methods: {
     addReply() {
       axios

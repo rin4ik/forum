@@ -83281,7 +83281,7 @@ var render = function() {
                     staticStyle: {
                       "font-weight": "700",
                       width: "30px",
-                      "margin-top": "-45px",
+                      "margin-top": "-68px",
                       "margin-right": "-17.5px",
                       height: "20px"
                     },
@@ -83344,45 +83344,45 @@ var render = function() {
           : _c("div", { domProps: { innerHTML: _vm._s(_vm.body) } })
       ]),
       _vm._v(" "),
-      _vm.authorize("owns", _vm.reply)
-        ? _c(
-            "div",
-            {
-              staticStyle: {
-                padding: "0",
-                "background-color": "white",
-                float: "left"
-              }
-            },
-            [
-              _c(
-                "button",
-                {
-                  staticClass: "btn is-small btn-link caps",
-                  staticStyle: { "box-shadow": "0", "padding-right": "0" },
-                  on: {
-                    click: function($event) {
-                      _vm.editing = true
-                    }
-                  }
-                },
-                [
-                  _c("i", {
-                    staticClass: "fa fa-pencil-square-o",
-                    staticStyle: { color: "rgb(37, 87, 188)" },
-                    attrs: { "aria-hidden": "true" }
-                  }),
-                  _vm._v(" Edit")
-                ]
-              )
-            ]
-          )
-        : _vm._e(),
-      _vm._v(" "),
       _c(
         "div",
         { staticClass: "level" },
         [
+          _vm.authorize("owns", _vm.reply)
+            ? _c(
+                "div",
+                {
+                  staticStyle: {
+                    padding: "0",
+                    "background-color": "white",
+                    float: "left"
+                  }
+                },
+                [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn is-small btn-link caps",
+                      staticStyle: { "box-shadow": "0", "padding-right": "0" },
+                      on: {
+                        click: function($event) {
+                          _vm.editing = true
+                        }
+                      }
+                    },
+                    [
+                      _c("i", {
+                        staticClass: "fa fa-pencil-square-o",
+                        staticStyle: { color: "rgb(37, 87, 188)" },
+                        attrs: { "aria-hidden": "true" }
+                      }),
+                      _vm._v(" Edit")
+                    ]
+                  )
+                ]
+              )
+            : _vm._e(),
+          _vm._v(" "),
           _c("favorite", {
             staticStyle: { "padding-left": "10px" },
             attrs: { reply: _vm.reply }
@@ -83540,7 +83540,7 @@ exports = module.exports = __webpack_require__(42)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -83553,10 +83553,6 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Reply_vue__ = __webpack_require__(166);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Reply_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Reply_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_at_js__ = __webpack_require__(521);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_at_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_at_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jquery_caret__ = __webpack_require__(522);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jquery_caret___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_jquery_caret__);
 //
 //
 //
@@ -83580,7 +83576,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
 
 
 
@@ -83591,20 +83586,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       completed: false
     };
   },
-  mounted: function mounted() {
-    $("#body").atwho({
-      at: "@",
-      delay: 2000,
-      callbacks: {
-        remoteFilter: function remoteFilter(query, callback) {
-          console.log("called");
-          $.getJSON("/api/users", { name: query }, function (usernames) {
-            callback(usernames);
-          });
-        }
-      }
-    });
-  },
+
 
   methods: {
     addReply: function addReply() {
@@ -85317,7 +85299,7 @@ var render = function() {
           _c(
             "button",
             {
-              staticClass: "btn shadow button is-info ",
+              staticClass: "btn shadow btn-primary ",
               attrs: { type: "submit" },
               on: { click: _vm.addReply }
             },
@@ -86227,12 +86209,19 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_trix__ = __webpack_require__(543);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_trix___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_trix__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_at_js__ = __webpack_require__(521);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_at_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_at_js__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jquery_caret__ = __webpack_require__(522);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_jquery_caret___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_jquery_caret__);
 //
 //
 //
 //
 //
 //
+
+
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -86241,6 +86230,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   mounted: function mounted() {
     var _this = this;
 
+    $("#body").atwho({
+      at: "@",
+      delay: 2000,
+      callbacks: {
+        remoteFilter: function remoteFilter(query, callback) {
+          $.getJSON("/api/users", { name: query }, function (usernames) {
+            callback(usernames);
+          });
+        }
+      }
+    });
     this.$refs.trix.addEventListener("trix-change", function (e) {
       _this.$emit("input", e.target.innerHTML);
     });
@@ -86310,7 +86310,8 @@ var render = function() {
       _vm._v(" "),
       _c("trix-editor", {
         ref: "trix",
-        attrs: { input: "trix", placeholder: _vm.placeholder }
+        staticStyle: { "background-color": "white" },
+        attrs: { id: "body", input: "trix", placeholder: _vm.placeholder }
       })
     ],
     1

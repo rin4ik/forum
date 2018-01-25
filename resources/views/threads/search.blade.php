@@ -7,19 +7,21 @@
 					<template slot-scope="{ result }">
 
 						<p>
-							<h4>
+							<h3>
 								<a :href="result.path">
 
 									<ais-highlight :result="result" attribute-name="title"></ais-highlight>
 
 								</a>
-							</h4>
-							<br>
+							</h3>
+
 							<ais-highlight :result="result" attribute-name="body"></ais-highlight>
 
 
 
 						</p>
+						<br>
+
 
 					</template>
 				</ais-results>
@@ -39,7 +41,7 @@
 						<ais-search-box class="form-group">
 
 							<ais-input class="form-control" placeholder="Find a thread..." :autofocus="true">
-							
+
 							</ais-input>
 
 						</ais-search-box>

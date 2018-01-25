@@ -8,7 +8,7 @@
                                         </a> said <span v-text="ago"></span>
                                 </h5>
                                 <div v-if="authorize('owns',reply)">                       
-                        <button type="submit" class="btn btn-link" style="font-weight: 700; width:30px;margin-top: -45px;
+                        <button type="submit" class="btn btn-link" style="font-weight: 700; width:30px;margin-top: -68px;
                         margin-right: -17.5px; height:20px;" @click="destroy">
                                         <i class="fa fa-window-close" style="color:rgba(24, 24, 26, 0.77)" aria-hidden="true"></i>
 
@@ -30,14 +30,14 @@
                         <div v-else v-html="body">  
                         </div>
                 </div>
-                     
+                       <div class='level'>
                       <div v-if="authorize('owns',reply)" style="padding: 0; background-color: white; float:left">
                         
                         <button class="btn is-small btn-link caps" @click="editing = true" style="box-shadow:0; padding-right:0">
                                 <i class="fa fa-pencil-square-o" style="color:rgb(37, 87, 188)" aria-hidden="true"></i> Edit</button>
                          </div>  
                          
-                         <div class='level'>
+                       
                                  <favorite :reply="reply" style="padding-left:10px;"></favorite> 
                                 
                                  <p v-if="signedIn" class="ml-a"><button class="btn btn-link caps" v-if="authorize('owns',reply.thread)" @click="markBestReply" v-show="!isBest" style="box-shadow:0;color:rgb(60, 150, 60)">Best Reply?</button></p>
